@@ -58,7 +58,7 @@ sudo rm /var/log/flood/verbosegc.log
 
 threads=10000
 rampup=300
-duration=1800
+duration=1200
 
 tag=benchmark
 
