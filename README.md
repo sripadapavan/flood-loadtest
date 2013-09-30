@@ -47,8 +47,6 @@ You can always get the latest current benchmark results from [flood.io](https://
 
 previous benchmarks
 ==============
-[summary results ...](./benchmarks/results/README.md)
-
 * ~~27/9 We observed Gatling was not showing correct throughput due to nginx not setting content-length header~~
 * ~~27/9 We observed that Gatling was not making conditional requests (304s)~~
 * ~~29/9 Gatling did not make conditional requests (304s) so we have hardcoded the header for cacheable content requests.~~
