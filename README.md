@@ -10,11 +10,11 @@ As we benchmark the tools in different load scenarios and test configurations we
 
 Our basic benchmark consists of throwing __10,000__ users at an __nginx__ site for 30 minutes duration with a scenario that GETs a slow resource (1.5s) 20% of the time, a cacheable content (304s) 40% of the time, non-cacheable content (200s) 30% of the time and and the rest simulated POSTs. Each scenario will parse the response (for a string using regular expressions) as well as body and response code assertions. [Apdex](http://apdex.org) is measured on a 300 ms satisfied target with up to 320 ms tolerated. 
 
-The target site and flood.io node are separate AWS instances (m1.xlarge) located in the same region (Sydney). The JVM heap size max is 4GB typically run with the following settings:
+The target site and flood.io node are separate AWS instances (m1.xlarge) located in the same region (Sydney). The JVM heap size max is 6GB typically run with the following settings:
 
 ```
 java -server -XX:+HeapDumpOnOutOfMemoryError 
--Xms4096m -Xmx4096m -XX:NewSize=1024m -XX:MaxNewSize=1024m 
+-Xms6144m -Xmx6144m -XX:NewSize=1536m -XX:MaxNewSize=1536m 
 -XX:MaxTenuringThreshold=2 -XX:+UseConcMarkSweepGC 
 -Dsun.rmi.dgc.client.gcInterval=600000 
 -Dsun.rmi.dgc.server.gcInterval=600000 
