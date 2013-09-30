@@ -56,3 +56,4 @@ previous benchmarks
 
 | Benchmark                                     | Tool        | Date                         | Duration | Apdex | Mean RT    |
 | -----                                         |-----        |-----                         |-----     |-----      |-----      |
+| [10000 Users](https://flood.io/e639303fb162ce) [gc](./benchmarks/results/e639303fb162ce.md) | Gatling-1.5.3 | 2013-09-30 09:52:32 | 20 mins | 0.95 [4000] | 1788 ms |
