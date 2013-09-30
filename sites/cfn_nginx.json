@@ -1,0 +1,199 @@
+
+{
+  "AWSTemplateFormatVersion" : "2010-09-09",
+  
+  "Description" : "AWS CloudFormation Sample Template Nginx_Multi_AZ: Create a highly available, scalable web stack. You will be billed for the AWS resources used if you create a stack from this template.",
+  
+  "Parameters" : {
+
+    "HostedZone" : {
+      "Default": "flood.io",
+      "Type" : "String",
+      "Description" : "The DNS name of an existing Amazon Route 53 hosted zone"
+    },
+
+    "HostedZoneSubDomain" : {
+      "Default": "loadtest",
+      "Type" : "String",
+      "Description" : "The DNS sub domain to be aliased to the load balancer"
+    },
+      
+    "KeyName" : {
+      "Description" : "Name of an existing EC2 KeyPair to enable SSH access to the instances",
+      "Type" : "String",
+      "MinLength": "1",
+      "MaxLength": "64",
+      "AllowedPattern" : "[-_ a-zA-Z0-9]*",
+      "ConstraintDescription" : "can contain only alphanumeric characters, spaces, dashes and underscores."
+    },    
+
+    "WebServerCapacity": {
+      "Default": "3",
+      "Description" : "The initial number of WebServer instances",
+      "Type": "Number",
+      "MinValue": "1",
+      "MaxValue": "5",
+      "ConstraintDescription" : "must be between 1 and 5 EC2 instances."
+    },
+
+    "InstanceType" : {
+      "Description" : "WebServer EC2 instance type",
+      "Type" : "String",
+      "Default" : "m1.medium",
+      "AllowedValues" : [ "t1.micro","m1.medium","m1.medium","m1.large","m1.xlarge","m2.xlarge","m2.2xlarge","m2.4xlarge","m3.xlarge","m3.2xlarge","c1.medium","c1.xlarge","cc1.4xlarge","cc2.8xlarge","cg1.4xlarge"],
+      "ConstraintDescription" : "must be a valid EC2 instance type."
+    },
+
+    "SSHLocation" : {
+      "Description" : " The IP address range that can be used to SSH to the EC2 instances",
+      "Type": "String",
+      "MinLength": "9",
+      "MaxLength": "18",
+      "Default": "0.0.0.0/0",
+      "AllowedPattern": "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})",
+      "ConstraintDescription": "must be a valid IP CIDR range of the form x.x.x.x/x."
+    }   
+  },
+  
+  "Mappings" : {
+    "AWSInstanceType2Arch" : {
+      "t1.micro"    : { "Arch" : "64" },
+      "m1.small"    : { "Arch" : "64" },
+      "m1.medium"   : { "Arch" : "64" },
+      "m1.large"    : { "Arch" : "64" },
+      "m1.xlarge"   : { "Arch" : "64" },
+      "m2.xlarge"   : { "Arch" : "64" },
+      "m2.2xlarge"  : { "Arch" : "64" },
+      "m2.4xlarge"  : { "Arch" : "64" },
+      "m3.xlarge"   : { "Arch" : "64" },
+      "m3.2xlarge"  : { "Arch" : "64" },
+      "c1.medium"   : { "Arch" : "64" },
+      "c1.xlarge"   : { "Arch" : "64" }
+    },
+
+    "AWSRegionArch2AMI" : {
+      "us-east-1"      : { "64" : "ami-53b1ff3a" },
+      "us-west-2"      : { "64" : "ami-8635a9b6" },
+      "us-west-1"      : { "64" : "ami-40350005" },
+      "eu-west-1"      : { "64" : "ami-78cf2a0f" },
+      "ap-southeast-1" : { "64" : "ami-e07239b2" },
+      "ap-southeast-2" : { "64" : "ami-6be67b51" },
+      "ap-northeast-1" : { "64" : "ami-d9118cd8" },
+      "sa-east-1"      : { "64" : "ami-bdcd6aa0" }
+    }
+  },
+    
+  "Resources" : {     
+    
+    "DNSZone" : {
+      "Type" : "AWS::Route53::RecordSetGroup",
+      "Properties" : {
+        "HostedZoneName" : { "Fn::Join" :  ["", [{ "Ref" : "HostedZone"}, "."]] },
+        "Comment" : "Alias targeted to ElasticLoadBalancer.",
+        "RecordSets" : [{
+          "Name" : { "Fn::Join" :  ["", [{ "Ref" : "HostedZoneSubDomain"}, ".", { "Ref" : "HostedZone"}, "."]] },
+          "Type" : "A",
+          "AliasTarget" : {
+            "HostedZoneId" : { "Fn::GetAtt" : ["ElasticLoadBalancer", "CanonicalHostedZoneNameID"] },
+            "DNSName" : { "Fn::GetAtt" : ["ElasticLoadBalancer","CanonicalHostedZoneName"] }
+          }
+        }]   
+      }
+    },
+
+    "ElasticLoadBalancer" : {
+      "Type" : "AWS::ElasticLoadBalancing::LoadBalancer",
+      "Metadata" : {
+        "Comment" : "Configure the Load Balancer with a simple health check and cookie-based stickiness"
+      },
+      "Properties" : {
+        "AvailabilityZones" : { "Fn::GetAZs" : "" },
+        "LBCookieStickinessPolicy" : [ {
+          "PolicyName" : "CookieBasedPolicy",
+          "CookieExpirationPeriod" : "30"
+        } ],
+        "Listeners" : [ {
+          "LoadBalancerPort" : "80",
+          "InstancePort" : "80",
+          "Protocol" : "HTTP",
+          "PolicyNames" : [ "CookieBasedPolicy" ]
+        } ],
+        "HealthCheck" : {
+          "Target" : "HTTP:80/",
+          "HealthyThreshold" : "2",
+          "UnhealthyThreshold" : "5",
+          "Interval" : "10",
+          "Timeout" : "5"
+        }
+      }
+    },
+
+    "WebServerGroup" : {
+      "Type" : "AWS::AutoScaling::AutoScalingGroup",
+      "Properties" : {
+        "AvailabilityZones" : { "Fn::GetAZs" : "" },
+        "LaunchConfigurationName" : { "Ref" : "LaunchConfig" },
+        "MinSize" : "1",
+        "MaxSize" : "5",
+        "DesiredCapacity" : { "Ref" : "WebServerCapacity" },
+        "LoadBalancerNames" : [ { "Ref" : "ElasticLoadBalancer" } ]
+      }
+    },
+
+    "LaunchConfig": {  
+      "Type" : "AWS::AutoScaling::LaunchConfiguration",
+      "Metadata" : {
+        "AWS::CloudFormation::Init" : {
+          "config" : {
+          }
+        }
+      },
+
+      "Properties": {
+        "ImageId" : { "Fn::FindInMap" : [ "AWSRegionArch2AMI", { "Ref" : "AWS::Region" },
+                          { "Fn::FindInMap" : [ "AWSInstanceType2Arch", { "Ref" : "InstanceType" }, "Arch" ] } ] },
+        "InstanceType"   : { "Ref" : "InstanceType" },
+        "SecurityGroups" : [ {"Ref" : "WebServerSecurityGroup"} ],
+        "KeyName"        : { "Ref" : "KeyName" },
+        "UserData"       : { "Fn::Base64" : { "Fn::Join" : ["", [
+          "#!/bin/bash -v\n",
+          "sudo add-apt-repository -y ppa:nginx/stable\n",
+          "sudo apt-get -y update\n",
+          "sudo apt-get -y install nginx wget\n",
+          "sudo locale-gen en_AU.UTF-8 en_US.UTF-8\n",
+          "echo 'fs.file-max=65535' | sudo tee -a /etc/sysctl.conf\n",
+          "echo 'net.ipv4.ip_local_port_range = 1024 65000' | sudo tee -a /etc/sysctl.conf\n",
+          "sudo sysctl -p\n",
+          "echo '* soft nofile 65536' | sudo tee -a /etc/security/limits.conf\n",
+          "echo '* hard nofile 65536' | sudo tee -a /etc/security/limits.conf\n",
+          "echo 'session required pam_limits.so' | sudo tee -a /etc/pam.d/login\n",
+          "sudo su -c 'ulimit -n 65536'\n",
+          "sudo su -c 'ulimit -n -H'\n",
+          "echo 1 | sudo tee -a /proc/sys/net/ipv4/tcp_tw_reuse\n",
+          "echo '10240' | sudo tee -a /proc/sys/net/core/somaxconn\n",
+          "sudo wget -O /usr/share/nginx/html/plain_text.html https://raw.github.com/flood-io/flood-loadtest/master/sites/plain_text.html\n",
+          "sudo service nginx start\n"
+        ]]}}        
+      }
+    },
+
+    "WebServerSecurityGroup" : {
+      "Type" : "AWS::EC2::SecurityGroup",
+      "Properties" : {
+        "GroupDescription" : "Enable HTTP access via port 80 locked down to the load balancer + SSH access",
+        "SecurityGroupIngress" : [
+          {"IpProtocol" : "tcp", "FromPort" : "80", "ToPort" : "80", "SourceSecurityGroupOwnerId" : {"Fn::GetAtt" : ["ElasticLoadBalancer", "SourceSecurityGroup.OwnerAlias"]},"SourceSecurityGroupName" : {"Fn::GetAtt" : ["ElasticLoadBalancer", "SourceSecurityGroup.GroupName"]}},
+          {"IpProtocol" : "tcp", "FromPort" : "22", "ToPort" : "22", "CidrIp" : { "Ref" : "SSHLocation"}}
+        ]
+      }      
+    }
+
+  },
+  
+  "Outputs" : {
+    "WebsiteURL" : {
+      "Value" : { "Fn::Join" : ["", ["http://", { "Fn::GetAtt" : [ "ElasticLoadBalancer", "DNSName" ]}]] },
+      "Description" : "URL for site"
+    }
+  }
+}
