@@ -8,14 +8,14 @@ Which [begs the question](http://en.wikipedia.org/wiki/Begs_the_question), is on
 
 ### Competitive Benchmarks 
 
-Ordinarily, we're not in the business of playing one tool off the other as we think different tools meet different requirements of our testers. After all, _"all competitive benchmarking is institutionalized cheating."_ [Guerrilla Manifesto](http://www.perfdynamics.com/Manifesto/gcaprules.html#tth_sEc1.21)
+Ordinarily, we're not in the business of playing one tool off the other as we think different tools meet different requirements of our testers. Considered that, _"all competitive benchmarking is institutionalized cheating."_ [Guerrilla Manifesto](http://www.perfdynamics.com/Manifesto/gcaprules.html#tth_sEc1.21)
 
 Since we offer both tools on our platform, it was in our interest to offer an objective comparison for both our testers and also the hard working developers who give up their own time making fantastic software like Gatling and JMeter. To that end, we'll continue to make these [benchmarks](https://github.com/flood-io/flood-loadtest) available at the following URLs on a regular basis:
 
-* [https://flood.io/benchmarks/jmeter](https://flood.io/benchmarks/jmeter) __JMeter 2.9__   
-* [https://flood.io/benchmarks/jmeter](https://flood.io/benchmarks/jmeter-nightly) __JMeter Nightly Build__    
-* [https://flood.io/benchmarks/gatling](https://flood.io/benchmarks/gatling) __Gatling 1.5.3__ 
-* [https://flood.io/benchmarks/gatling](https://flood.io/benchmarks/gatling-nightly) __Gatling Nightly Build__ 
+* [__JMeter 2.9__ RELEASE](https://flood.io/benchmarks/jmeter)   
+* [__JMeter 2.10__ NIGHTLY](https://flood.io/benchmarks/jmeter?version=-2.10)     
+* [__Gatling 1.5.3__](https://flood.io/benchmarks/gatling)  
+* Gatling 2.0.0-M3a TBA
 
 ### The Target Site
 
@@ -23,7 +23,7 @@ We needed a target site that could comfortably handle the types of concurrency a
 
 We also needed the target site to behave like an application server; that is, respond to normal HTTP GETs but also respond to HTTP POSTs whilst serving up static and dynamic content. The site had to generate artificial latency in response time, much like a normal web tier would behave. To that end, we were able to mock this mix of transactions with our [custom nginx configuration](https://github.com/flood-io/flood-loadtest/blob/master/sites/sites-enabled-default). 
 
-We tuned the OS kernel / TCP network [settings](https://github.com/flood-io/flood-loadtest/blob/master/sites/os-tuning-modes-nginx.sh) and allocated 4 virtual CPUs and 15 GB RAM to make sure there were no bottlenecks on the target site.
+We tuned the OS kernel / TCP network [settings](https://github.com/flood-io/flood-loadtest/blob/master/sites/os-tuning-mods-nginx.sh) and allocated 4 virtual CPUs and 15 GB RAM to make sure there were no bottlenecks on the target site.
 
 ### The Load Generator
 
@@ -59,7 +59,7 @@ Our [load scenario](https://github.com/flood-io/flood-loadtest/blob/master/bench
 
 ### The Test Plans
 
-Our test plans are available for [Gatling](https://github.com/flood-io/flood-loadtest/blob/master/benchmarks/spec/gatling.scala) and [JMeter](https://github.com/flood-io/flood-loadtest/blob/master/benchmarks/spec/jmeter.jmx) with the latter [auto generated](https://github.com/flood-io/flood-loadtest/blob/master/benchmarks/spec/jmeter.rb) by the popular [ruby-jmeter DSL](https://github.com/flood-io/ruby-jmeter).
+Our test plans are available for [Gatling](https://github.com/flood-io/flood-loadtest/blob/master/benchmarks/spec/gatling.scala) and [JMeter](https://github.com/flood-io/flood-loadtest/blob/master/benchmarks/spec/jmeter.jmx) with the latter [auto generated](https://github.com/flood-io/flood-loadtest/blob/master/benchmarks/spec/jmeter.rb) by our popular [ruby-jmeter DSL](https://github.com/flood-io/ruby-jmeter).
 
 ### The Target Benchmarks
 
@@ -117,11 +117,11 @@ Pleasingly, we found that at these volumes, there was not much variance in resul
 
 * __[JMeter](https://github.com/flood-io/flood-loadtest/blob/master/benchmarks/results/9fde49a2f3d43b.md)__ is more resource heavy on the JVM compared to __[Gatling](https://github.com/flood-io/flood-loadtest/blob/master/benchmarks/results/e639303fb162ce.md)__. At Flood we use Concurrent Mark Sweep (CMS) for garbage collection in an effort to lower the latency of GC pauses. 
 
-* __JMeter__ is more resource heavy on system CPU and Memory as the following graphs demonstrates this in terms of CPU and Memory utilization. This may affect you more if the complexity of your test plans increase or perceived concurrency on the JVM increases with a slower performing target site.
+* __JMeter__ is more resource heavy on system CPU and Memory as the following graphs demonstrates this in terms of CPU and JVM Heap utilization. This may affect you more if the complexity of your test plans increase or perceived concurrency on the JVM increases with a slower performing target site.
 
 ![](https://flood.io/images/blog/benchmark_cpu.png)
 
-![](https://flood.io/images/blog/benchmark_mem.png)
+![](https://raw.github.com/flood-io/flood-loadtest/master/benchmarks/results/gc/9fde49a2f3d43b/tenured_size.jpg)
 
 * __Both__ JMeter and Gatling demonstrated the desired characteristics of relatively _flat_ response times for measured transactions during rampup and under load, with little variance. Mean response time shouldn't be used as a measure of the tool's performance aside from the prior observation in this sense.
 
@@ -135,7 +135,7 @@ Pleasingly, we found that at these volumes, there was not much variance in resul
 
 ### TL;DR
 
-In terms of concurrency and throughput achievable from a single load generator, there is little to differentiate between Gatling and JMeter. Gatling has some limitations in the ability to accurately record response payload in bytes, which can be compensated by external monitors. JMeter generally demonstrates higher resource usage in terms of CPU, Memory and JVM performance, but can otherwise manage the load when run on a suitably tuned OS with appropriate memory allocation. 
+In terms of concurrency and throughput achievable from a single load generator, there is little to differentiate between Gatling and JMeter. Gatling has some limitations in the ability to accurately record response payload in bytes, which can be compensated by external monitors. JMeter generally demonstrates higher resource usage in terms of CPU, Memory and JVM performance, but can otherwise manage the load when run with appropriate memory allocation.
 
 We don't anticipate users ordinarily run JVMs at their peak as we did in this benchmark, and flood.io automatically warns the user if any of the Grid nodes are exhausting available resources in such a case.
 
