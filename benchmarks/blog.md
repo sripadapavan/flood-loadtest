@@ -137,7 +137,9 @@ Pleasingly, we found that at these volumes, there was not much variance in resul
 
 In terms of concurrency and throughput achievable from a single load generator, there is little to differentiate between Gatling and JMeter. Gatling has some limitations in the ability to accurately record response payload in bytes, which can be compensated by external monitors. JMeter generally demonstrates higher resource usage in terms of CPU, Memory and JVM performance, but can otherwise manage the load when run with appropriate memory allocation.
 
-We don't anticipate users ordinarily run JVMs at their peak as we did in this benchmark, and flood.io automatically warns the user if any of the Grid nodes are exhausting available resources in such a case.
+We don't anticipate users ordinarily run JVMs at their peak as we did in this benchmark, and flood.io automatically warns the user if any of the Grid nodes are exhausting available resources in such a case. 
+
+For the sake of these benchmarks, we chose a simplistic scenario to reduce the number of variables that can affect a side by side comparison. As such results should be analyzed in context of the test boundaries described above. It is possible that performance will differ in more realistic scenarios. The best way to explore is to try for yourself. We host a free node on [flood.io](https://flood.io) which lets you run JMeter or Gatling tests, and registration is free.
 
 At the end of the day, the choice between __JMeter__ and __Gatling__ is purely subjective, and is better made on some of the other features that each tool independently provides. 
 
