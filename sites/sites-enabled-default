@@ -65,4 +65,9 @@ server {
     echo "</h3>";
     echo "</body><html>";
   }
+
+  location /status {
+    stub_status on;
+    access_log off;
+  }
 }
