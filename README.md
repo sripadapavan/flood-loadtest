@@ -57,8 +57,6 @@ previous benchmarks
 | [10000 Users](https://flood.io/e639303fb162ce) [gc](./benchmarks/results/e639303fb162ce.md) | Gatling-1.5.3 | 2013-09-30 09:52:32 | 20 mins | 0.95 [4000] | 1788 ms |
 | [10000 Users](https://flood.io/e281b0e339fb14) [gc](./benchmarks/results/e281b0e339fb14.md) | JMeter-2.9 | 2013-09-30 10:13:15 | 20 mins | 0.95 [4000] | 1625 ms |
 | [10000 Users](https://flood.io/9fde49a2f3d43b) [gc](./benchmarks/results/9fde49a2f3d43b.md) | JMeter-2.10 | 2013-09-30 10:33:59 | 20 mins | 0.95 [4000] | 1698 ms |
-| [20000 Users](https://flood.io/1cf455229dea6c) [gc](./benchmarks/results/1cf455229dea6c.md) | Gatling-1.5.3 | 2013-10-01 07:13:11 | 20 mins | 0.95 [4000] | 1674 ms |
-| [20000 Users](https://flood.io/33ebc2c90560f0) [gc](./benchmarks/results/33ebc2c90560f0.md) | JMeter-2.9 | 2013-10-01 07:34:18 | 20 mins | 0.96 [4000] | 1214 ms |
 | [20000 Users](https://flood.io/2037deb43774de) [gc](./benchmarks/results/2037deb43774de.md) | JMeter-2.9 | 2013-10-01 08:20:47 | 20 mins | 0.87 [4000] | 2637 ms |
 | [20000 Users](https://flood.io/57b90939e21846) [gc](./benchmarks/results/57b90939e21846.md) | JMeter-2.10 | 2013-10-01 08:41:49 | 20 mins | 0.91 [4000] | 2143 ms |
 | [20000 Users](https://flood.io/6666b6bc4cb8a2) [gc](./benchmarks/results/6666b6bc4cb8a2.md) | Gatling-1.5.3 | 2013-10-01 09:03:03 | 20 mins | 0.95 [4000] | 1702 ms |
