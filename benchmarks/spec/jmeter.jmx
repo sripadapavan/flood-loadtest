@@ -83,7 +83,7 @@
       </ThreadGroup>
       <hashTree>
         <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="ConstantTimer" enabled="true">
-          <stringProp name="ConstantTimer.delay">30000</stringProp>
+          <stringProp name="ConstantTimer.delay">15000</stringProp>
         </ConstantTimer>
         <hashTree/>
         <ThroughputController guiclass="ThroughputControllerGui" testclass="ThroughputController" testname="ThroughputController" enabled="true">

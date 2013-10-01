@@ -56,11 +56,11 @@ sudo rm /var/log/flood/verbosegc.log
 
 # tag=shakeout
 
-threads=40000
+threads=10000
 rampup=300
 duration=1200
 
-tag=stress
+tag=benchmark
 
 # Benchmark Gatling Current 1.5.3
 tool="Gatling-1.5.3"
