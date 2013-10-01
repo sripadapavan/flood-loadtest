@@ -66,7 +66,7 @@ flood_uuid=`/usr/bin/curl --silent --user ${FLOOD_API_TOKEN}: https://api.flood.
 -F "flood[duration]=$((duration-rampup))" \
 -F "flood[name]=Gatling 1.5.3" \
 -F "flood[tag_list]=${tag}" \
--F "flood[plan]=@${here}/benchmarks/spec/gatling.scala" | /usr/local/bin/jq ".response.uuid" | tr -d '"'`
+-F "flood[plan]=@${here}/benchmarks/spec/gatling_stress.scala" | /usr/local/bin/jq ".response.uuid" | tr -d '"'`
 poll_and_report
 
 # Benchmark JMeter Current 2.9
@@ -79,7 +79,7 @@ flood_uuid=`/usr/bin/curl --silent --user ${FLOOD_API_TOKEN}: https://api.flood.
 -F "flood[duration]=${duration}" \
 -F "flood[name]=JMeter 2.9" \
 -F "flood[tag_list]=${tag}" \
--F "flood[plan]=@${here}/benchmarks/spec/jmeter.jmx" | /usr/local/bin/jq ".response.uuid" | tr -d '"'`
+-F "flood[plan]=@${here}/benchmarks/spec/jmeter_stress.jmx" | /usr/local/bin/jq ".response.uuid" | tr -d '"'`
 poll_and_report
 
 # Benchmark JMeter Nightly
@@ -92,7 +92,7 @@ flood_uuid=`/usr/bin/curl --silent --user ${FLOOD_API_TOKEN}: https://api.flood.
 -F "flood[duration]=${duration}" \
 -F "flood[name]=JMeter 2.10" \
 -F "flood[tag_list]=${tag}-2.10" \
--F "flood[plan]=@${here}/benchmarks/spec/jmeter.jmx" | /usr/local/bin/jq ".response.uuid" | tr -d '"'`
+-F "flood[plan]=@${here}/benchmarks/spec/jmeter_stress.jmx" | /usr/local/bin/jq ".response.uuid" | tr -d '"'`
 poll_and_report
 
 # Benchmark Gatling Nightly
