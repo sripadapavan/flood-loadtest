@@ -46,4 +46,23 @@ server {
     allow ::1;
     deny all;
   }
+
+  location /request {
+    default_type text/html;
+    echo_sleep 3;
+    echo_duplicate 1024 $echo_client_request_headers;
+  }
+
+  location /repeat {
+    default_type text/html;
+    echo_sleep 2.123;
+    echo "<html><body>";
+    echo_duplicate 1024 "aaark..";
+    echo "<h1>Polly wants a</h1><h3>";
+    echo_foreach_split ',' $arg_list;
+      echo "$echo_it";
+    echo_end;
+    echo "</h3>";
+    echo "</body><html>";
+  }
 }
