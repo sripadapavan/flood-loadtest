@@ -56,3 +56,4 @@ previous benchmarks
 | [20000 Users](https://flood.io/6666b6bc4cb8a2) [gc](./benchmarks/results/6666b6bc4cb8a2.md) | Gatling-1.5.3 | 2013-10-01 09:03:03 | 20 mins | 0.95 [4000] | 1702 ms |
 | [40000 Users](https://flood.io/2c13788664d83d) [gc](./benchmarks/results/2c13788664d83d.md) | Gatling-1.5.3 | 2013-10-01 09:53:57 | 20 mins | 0.95 [4000] | 1574 ms |
 | [100 Users](https://flood.io/5bdd2601b9fb3c) [gc](./benchmarks/results/5bdd2601b9fb3c.md) | Gatling-1.5.3 | 2013-10-02 10:29:33 | 2 mins | 0.93 [4000] | 1931 ms |
+| [100 Users](https://flood.io/4ab9feb117064d) [gc](./benchmarks/results/4ab9feb117064d.md) | JMeter-2.9 | 2013-10-02 10:32:10 | 2 mins | 0.97 [4000] | 1130 ms |
