@@ -81,7 +81,7 @@ tag=benchmark
 # poll_and_report
 
 # Benchmark JMeter Latest
-sudo latest=`/usr/bin/curl --silent http://ci.apache.org/projects/jmeter/nightlies/ | /bin/grep LATEST | /bin/egrep -o "r[0-9]+"`
+latest=`/usr/bin/curl --silent http://ci.apache.org/projects/jmeter/nightlies/ | /bin/grep LATEST | /bin/egrep -o "r[0-9]+"`
 sudo /usr/bin/wget -O /usr/share/jmeter-latest/jmeter_bin.zip http://ci.apache.org/projects/jmeter/nightlies/${latest}/apache-jmeter-${latest}_bin.zip
 sudo /usr/bin/wget -O /usr/share/jmeter-latest/jmeter_lib.zip http://ci.apache.org/projects/jmeter/nightlies/${latest}/apache-jmeter-${latest}_lib.zip
 
