@@ -1,6 +1,6 @@
 #!/bin/bash
 FLOOD_API_TOKEN=$1
-
+echo ${FLOOD_API_TOKEN} token
 here=${PWD}
 
 function poll_and_report {
