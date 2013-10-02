@@ -1,5 +1,6 @@
 #!/bin/bash
 source /home/ubuntu/.bashrc
+echo flood api token: ${FLOOD_API_TOKEN}
 
 here=${PWD}
 
