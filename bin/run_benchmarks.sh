@@ -1,9 +1,5 @@
 #!/bin/bash
-if [ "$#" == "0" ]; then
-  echo "Please pass in a flood_api_token"
-  exit 1
-fi
-export flood_api_token=$1
+FLOOD_API_TOKEN=$1
 
 here=${PWD}
 
@@ -12,16 +8,16 @@ function poll_and_report {
   flood_status="queued"
   while [ "${flood_status}" != "finished" ]; do
     echo Polling ${flood_uuid} current status ${flood_status} ...
-    flood_status=`/usr/bin/curl --silent --user ${flood_api_token}: https://api.flood.io/floods/${flood_uuid} | /usr/local/bin/jq ".response.status" | tr -d '"'`
+    flood_status=`/usr/bin/curl --silent --user ${FLOOD_API_TOKEN}: https://api.flood.io/floods/${flood_uuid} | /usr/local/bin/jq ".response.status" | tr -d '"'`
     sleep 3
   done
 
   # get verbose GC logs
   wget -O ${here}/benchmarks/results/gc/${flood_uuid}.log http://s1.node-production.flood.io/log/verbosegc.log
 
-  flood_report=`/usr/bin/curl --silent --user ${flood_api_token}: https://api.flood.io/floods/${flood_uuid}/report | /usr/local/bin/jq ".response.report" | tr -d '"'`
-  apdex=`/usr/bin/curl --silent --user ${flood_api_token}: https://api.flood.io/floods/${flood_uuid} | /usr/local/bin/jq ".response.apdex" | tr -d '"'`
-  mean_response_time=`/usr/bin/curl --silent --user ${flood_api_token}: https://api.flood.io/floods/${flood_uuid} | /usr/local/bin/jq ".response.mean_response_time" | tr -d '"'`
+  flood_report=`/usr/bin/curl --silent --user ${FLOOD_API_TOKEN}: https://api.flood.io/floods/${flood_uuid}/report | /usr/local/bin/jq ".response.report" | tr -d '"'`
+  apdex=`/usr/bin/curl --silent --user ${FLOOD_API_TOKEN}: https://api.flood.io/floods/${flood_uuid} | /usr/local/bin/jq ".response.apdex" | tr -d '"'`
+  mean_response_time=`/usr/bin/curl --silent --user ${FLOOD_API_TOKEN}: https://api.flood.io/floods/${flood_uuid} | /usr/local/bin/jq ".response.mean_response_time" | tr -d '"'`
 
   echo >> ${here}/benchmarks/results/${flood_uuid}.md
   echo "### ${version} ${threads} Users" >> ${here}/benchmarks/results/${flood_uuid}.md
@@ -61,7 +57,7 @@ tag=benchmark
 
 # Benchmark Gatling Current 1.5.3
 version="Gatling-1.5.3"
-flood_uuid=`/usr/bin/curl --silent --user ${flood_api_token}: https://api.flood.io/floods \
+flood_uuid=`/usr/bin/curl --silent --user ${FLOOD_API_TOKEN}: https://api.flood.io/floods \
 -F "region=ap-southeast-2" \
 -F "flood[tool]=gatling" \
 -F "flood[threads]=${threads}" \
@@ -75,7 +71,7 @@ poll_and_report
 
 # Benchmark JMeter Current 2.9
 version="JMeter-2.9"
-flood_uuid=`/usr/bin/curl --silent --user ${flood_api_token}: https://api.flood.io/floods \
+flood_uuid=`/usr/bin/curl --silent --user ${FLOOD_API_TOKEN}: https://api.flood.io/floods \
 -F "region=ap-southeast-2" \
 -F "flood[tool]=jmeter" \
 -F "flood[threads]=${threads}" \
@@ -98,7 +94,7 @@ sudo /bin/mv -f /usr/share/apache-jmeter* /usr/share/jmeter-${latest}
 sudo /bin/chown -R flood:flood /usr/share/jmeter-${latest}
 
 version="JMeter-${latest}"
-flood_uuid=`/usr/bin/curl --silent --user ${flood_api_token}: https://api.flood.io/floods \
+flood_uuid=`/usr/bin/curl --silent --user ${FLOOD_API_TOKEN}: https://api.flood.io/floods \
 -F "region=ap-southeast-2" \
 -F "flood[tool]=jmeter-${latest}" \
 -F "flood[threads]=${threads}" \
@@ -119,7 +115,7 @@ sudo /bin/mv -f /usr/share/gatling-charts-highcharts* /usr/share/gatling-${lates
 sudo /bin/chown -R flood:flood /usr/share/gatling-${latest}
 
 version="Gatling-${latest}"
-flood_uuid=`/usr/bin/curl --silent --user ${flood_api_token}: https://api.flood.io/floods \
+flood_uuid=`/usr/bin/curl --silent --user ${FLOOD_API_TOKEN}: https://api.flood.io/floods \
 -F "region=ap-southeast-2" \
 -F "flood[tool]=gatling-${latest}" \
 -F "flood[threads]=${threads}" \
