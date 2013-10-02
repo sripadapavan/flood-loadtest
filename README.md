@@ -61,16 +61,3 @@ previous benchmarks
 | [20000 Users](https://flood.io/57b90939e21846) [gc](./benchmarks/results/57b90939e21846.md) | JMeter-2.10 | 2013-10-01 08:41:49 | 20 mins | 0.91 [4000] | 2143 ms |
 | [20000 Users](https://flood.io/6666b6bc4cb8a2) [gc](./benchmarks/results/6666b6bc4cb8a2.md) | Gatling-1.5.3 | 2013-10-01 09:03:03 | 20 mins | 0.95 [4000] | 1702 ms |
 | [40000 Users](https://flood.io/2c13788664d83d) [gc](./benchmarks/results/2c13788664d83d.md) | Gatling-1.5.3 | 2013-10-01 09:53:57 | 20 mins | 0.95 [4000] | 1574 ms |
-| [20000 Users](https://flood.io/bc59dd995fd8ff) [gc](./benchmarks/results/bc59dd995fd8ff.md) | Gatling-1.5.3 | 2013-10-02 00:40:44 | 20 mins | 0.95 [4000] | 1710 ms |
-| [20000 Users](https://flood.io/507945f1702bad) [gc](./benchmarks/results/507945f1702bad.md) | JMeter-2.9 | 2013-10-02 01:21:47 | 20 mins | 0.84 [4000] | 3946 ms |
-| [20000 Users](https://flood.io/9e64d234da00ea) [gc](./benchmarks/results/9e64d234da00ea.md) | JMeter-2.10 | 2013-10-02 01:42:47 | 20 mins | 0.9 [4000] | 2179 ms |
-| [100 Users](https://flood.io/7a2391f05891b4) [gc](./benchmarks/results/7a2391f05891b4.md) | JMeter-2.10 | 2013-10-02 07:04:30 | 2 mins | null | null ms |
-| [100 Users](https://flood.io/2d93bff1fadb8e) [gc](./benchmarks/results/2d93bff1fadb8e.md) | JMeter-2.10 | 2013-10-02 07:21:38 | 2 mins | 0.96 [4000] | 1603 ms |
-| [100 Users](https://flood.io/10d61e78930494) [gc](./benchmarks/results/10d61e78930494.md) | Gatling-2.0.0-20131001.201622-332-bundle | 2013-10-02 07:37:37 | 2 mins | null | null ms |
-| [100 Users](https://flood.io/2c94e6036be54e) [gc](./benchmarks/results/2c94e6036be54e.md) | Gatling-2.0.0-20131001.201622-332-bundle | 2013-10-02 07:40:41 | 2 mins | null | null ms |
-| [100 Users](https://flood.io/6e4a4d2d023fa9) [gc](./benchmarks/results/6e4a4d2d023fa9.md) | Gatling-2.0.0-20131001.201622-332-bundle | 2013-10-02 07:48:21 | 2 mins | null | null ms |
-| [100 Users](https://flood.io/5aa77a31f79d87) [gc](./benchmarks/results/5aa77a31f79d87.md) | Gatling-2.0.0-20131001.201622-332-bundle | 2013-10-02 08:00:08 | 2 mins | null | null ms |
-| [100 Users](https://flood.io/5c342a70087140) [gc](./benchmarks/results/5c342a70087140.md) | Gatling-2.0.0-20131001.201622-332-bundle | 2013-10-02 08:57:39 | 2 mins | null | null ms |
-| [100 Users](https://flood.io/9403ba7a26568e) [gc](./benchmarks/results/9403ba7a26568e.md) | Gatling-2.0.0-20131001.201622-332-bundle | 2013-10-02 09:10:33 | 2 mins | null | null ms |
-| [100 Users](https://flood.io/fe49893c99a8f4) [gc](./benchmarks/results/fe49893c99a8f4.md) | Gatling-2.0.0-20131001.201622-332-bundle | 2013-10-02 09:16:00 | 2 mins | null | null ms |
-| [100 Users](https://flood.io/a6ea0d1aea6ba6) [gc](./benchmarks/results/a6ea0d1aea6ba6.md) | Gatling-2.0.0-20131001.201622-332-bundle | 2013-10-02 09:21:35 | 2 mins | 0.96 [4000] | 1690 ms |
