@@ -38,8 +38,8 @@ latest benchmarks
 ==============
 You can always get the latest current benchmark results from [flood.io](https://flood.io) at:
 
-* __JMeter__ [RELEASE](https://flood.io/benchmarks/jmeter) [LATEST](https://flood.io/benchmarks/jmeter?version=latest)   
-* __Gatling__ [RELEASE](https://flood.io/benchmarks/gatling) [LATEST](https://flood.io/benchmarks/gatling?version=latest)  
+* __JMeter__ [RELEASE](https://flood.io/benchmarks/jmeter?tag=benchmark-release) [LATEST](https://flood.io/benchmarks/jmeter?tag=benchmark-latest)   
+* __Gatling__ [RELEASE](https://flood.io/benchmarks/gatling?tag=benchmark-release) [LATEST](https://flood.io/benchmarks/gatling?tag=benchmark-latest)  
 
 previous benchmarks
 ==============
