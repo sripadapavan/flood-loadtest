@@ -48,9 +48,9 @@ function poll_and_report {
 
 sudo rm /var/log/flood/verbosegc.log
 
-threads=10000
-rampup=300
-duration=1200
+threads=100
+rampup=10
+duration=120
 
 tag=benchmark
 
