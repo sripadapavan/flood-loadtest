@@ -41,7 +41,7 @@ function poll_and_report {
   echo "\![](./gc/${flood_uuid}/young_size.jpg)" >> ${here}/benchmarks/results/${flood_uuid}.md
   echo >> ${here}/benchmarks/results/${flood_uuid}.md
 
-  echo "| [${threads} Users](https://flood.io/${flood_uuid}) [gc](./benchmarks/results/${flood_uuid}.md) | ${version} | `date +"%F %T"` | $((duration/60)) mins | ${apdex} | ${mean_response_time} ms |" >> ${here}/README.md
+  echo "| [:link:](https://flood.io/${flood_uuid}) [:chart_with_upwards_trend:](./benchmarks/results/${flood_uuid}.md) ${threads} Users] | ${version} | `date +"%F %T"` | $((duration/60)) mins | ${apdex} | ${mean_response_time} ms |" >> ${here}/README.md
 
   cd ~/flood-loadtest
   git add .
