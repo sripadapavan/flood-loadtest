@@ -12,10 +12,19 @@ Ordinarily, we're not in the business of playing one tool off the other as we th
 
 Since we offer both tools on our platform, it was in our interest to offer an objective comparison for both our testers and also the hard working developers who give up their own time making fantastic software like Gatling and JMeter. To that end, we'll continue to make these [benchmarks](https://github.com/flood-io/flood-loadtest) available at the following URLs on a regular basis:
 
-* [__JMeter 2.9__ RELEASE](https://flood.io/benchmarks/jmeter)   
-* [__JMeter 2.10__ NIGHTLY](https://flood.io/benchmarks/jmeter?version=-2.10)     
-* [__Gatling 1.5.3__](https://flood.io/benchmarks/gatling)  
-* Gatling 2.0.0-M3a TBA
+#### JMeter
+
+Current Release [https://flood.io/benchmarks/jmeter](https://flood.io/benchmarks/jmeter?tag=benchmark-release)
+
+Latest Release [https://flood.io/benchmarks/jmeter?tag=benchmark-latest](https://flood.io/benchmarks/jmeter?tag=benchmark-latest)
+
+
+#### Gatling
+
+Current Release [https://flood.io/benchmarks/gatling](https://flood.io/benchmarks/gatling?tag=benchmark-release)
+
+Latest Release [https://flood.io/benchmarks/gatling?tag=benchmark-latest](https://flood.io/benchmarks/gatling?tag=benchmark-latest)
+
 
 ### The Target Site
 
@@ -59,7 +68,7 @@ Our [load scenario](https://github.com/flood-io/flood-loadtest/blob/master/bench
 
 ### The Test Plans
 
-Our test plans are available for [Gatling](https://github.com/flood-io/flood-loadtest/blob/master/benchmarks/spec/gatling.scala) and [JMeter](https://github.com/flood-io/flood-loadtest/blob/master/benchmarks/spec/jmeter.jmx) with the latter [auto generated](https://github.com/flood-io/flood-loadtest/blob/master/benchmarks/spec/jmeter.rb) by our popular [ruby-jmeter DSL](https://github.com/flood-io/ruby-jmeter).
+Our test plans are available for [Gatling](https://github.com/flood-io/flood-loadtest/blob/master/benchmarks/spec/gatling/1.5.3/benchmark.scala) and [JMeter](https://github.com/flood-io/flood-loadtest/blob/master/benchmarks/spec/jmeter.jmx) with the latter [auto generated](https://github.com/flood-io/flood-loadtest/blob/master/benchmarks/spec/jmeter/benchmark.rb) by our popular [ruby-jmeter DSL](https://github.com/flood-io/ruby-jmeter).
 
 ### The Target Benchmarks
 
