@@ -1,5 +1,5 @@
 #!/bin/bash
-source $HOME/.bashrc
+source /home/ubuntu/.bashrc
 
 here=${PWD}
 
