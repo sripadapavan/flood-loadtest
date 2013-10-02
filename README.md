@@ -72,3 +72,4 @@ previous benchmarks
 | [100 Users](https://flood.io/5aa77a31f79d87) [gc](./benchmarks/results/5aa77a31f79d87.md) | Gatling-2.0.0-20131001.201622-332-bundle | 2013-10-02 08:00:08 | 2 mins | null | null ms |
 | [100 Users](https://flood.io/5c342a70087140) [gc](./benchmarks/results/5c342a70087140.md) | Gatling-2.0.0-20131001.201622-332-bundle | 2013-10-02 08:57:39 | 2 mins | null | null ms |
 | [100 Users](https://flood.io/9403ba7a26568e) [gc](./benchmarks/results/9403ba7a26568e.md) | Gatling-2.0.0-20131001.201622-332-bundle | 2013-10-02 09:10:33 | 2 mins | null | null ms |
+| [100 Users](https://flood.io/fe49893c99a8f4) [gc](./benchmarks/results/fe49893c99a8f4.md) | Gatling-2.0.0-20131001.201622-332-bundle | 2013-10-02 09:16:00 | 2 mins | null | null ms |
