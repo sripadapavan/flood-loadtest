@@ -54,18 +54,18 @@ duration=120
 
 tag=benchmark
 
-# # Benchmark Gatling Current 1.5.3
-# tool="Gatling-1.5.3"
-# flood_uuid=`/usr/bin/curl --silent --user ${FLOOD_API_TOKEN}: https://api.flood.io/floods \
-# -F "region=ap-southeast-2" \
-# -F "flood[tool]=gatling" \
-# -F "flood[threads]=${threads}" \
-# -F "flood[rampup]=${rampup}" \
-# -F "flood[duration]=$((duration-rampup))" \
-# -F "flood[name]=Gatling 1.5.3" \
-# -F "flood[tag_list]=${tag}" \
-# -F "flood[plan]=@${here}/benchmarks/spec/gatling/1.5.3/benchmark.scala" | /usr/local/bin/jq ".response.uuid" | tr -d '"'`
-# poll_and_report
+# Benchmark Gatling Current 1.5.3
+tool="Gatling-1.5.3"
+flood_uuid=`/usr/bin/curl --silent --user ${FLOOD_API_TOKEN}: https://api.flood.io/floods \
+-F "region=ap-southeast-2" \
+-F "flood[tool]=gatling" \
+-F "flood[threads]=${threads}" \
+-F "flood[rampup]=${rampup}" \
+-F "flood[duration]=$((duration-rampup))" \
+-F "flood[name]=Gatling 1.5.3" \
+-F "flood[tag_list]=${tag}" \
+-F "flood[plan]=@${here}/benchmarks/spec/gatling/1.5.3/benchmark.scala" | /usr/local/bin/jq ".response.uuid" | tr -d '"'`
+poll_and_report
 
 # # Benchmark JMeter Current 2.9
 # tool="JMeter-2.9"
@@ -102,22 +102,22 @@ tag=benchmark
 # -F "flood[plan]=@${here}/benchmarks/spec/jmeter/benchmark.jmx" | /usr/local/bin/jq ".response.uuid" | tr -d '"'`
 # poll_and_report
 
-# Benchmark Gatling Nightly
-latest=`/usr/bin/curl --silent http://repository-gatling.forge.cloudbees.com/snapshot/io/gatling/highcharts/gatling-charts-highcharts/2.0.0-SNAPSHOT/ | /bin/egrep -o "gatling-charts.+bundle.zip" | /usr/bin/head -n1 | /usr/bin/cut -d">" -f2 | /bin/egrep -o "2.+bundle"`
-sudo /usr/bin/wget -O /usr/share/gatling-latest/gatling.zip http://repository-gatling.forge.cloudbees.com/snapshot/io/gatling/highcharts/gatling-charts-highcharts/2.0.0-SNAPSHOT/gatling-charts-highcharts-${latest}.zip
+# # Benchmark Gatling Nightly
+# latest=`/usr/bin/curl --silent http://repository-gatling.forge.cloudbees.com/snapshot/io/gatling/highcharts/gatling-charts-highcharts/2.0.0-SNAPSHOT/ | /bin/egrep -o "gatling-charts.+bundle.zip" | /usr/bin/head -n1 | /usr/bin/cut -d">" -f2 | /bin/egrep -o "2.+bundle"`
+# sudo /usr/bin/wget -O /usr/share/gatling-latest/gatling.zip http://repository-gatling.forge.cloudbees.com/snapshot/io/gatling/highcharts/gatling-charts-highcharts/2.0.0-SNAPSHOT/gatling-charts-highcharts-${latest}.zip
 
-sudo /usr/bin/unzip -u -o /usr/share/gatling-latest/gatling.zip -d /usr/share/
-sudo mv /usr/share/gatling-charts-highcharts* /usr/share/gatling-${latest}
-sudo chown -R flood:flood /usr/share/gatling-${latest}
+# sudo /usr/bin/unzip -u -o /usr/share/gatling-latest/gatling.zip -d /usr/share/
+# sudo mv /usr/share/gatling-charts-highcharts* /usr/share/gatling-${latest}
+# sudo chown -R flood:flood /usr/share/gatling-${latest}
 
-tool="Gatling-${latest}"
-flood_uuid=`/usr/bin/curl --silent --user ${FLOOD_API_TOKEN}: https://api.flood.io/floods \
--F "region=ap-southeast-2" \
--F "flood[tool]=gatling-${latest}" \
--F "flood[threads]=${threads}" \
--F "flood[rampup]=${rampup}" \
--F "flood[duration]=$((duration-rampup))" \
--F "flood[name]=Gatling-${latest}" \
--F "flood[tag_list]=${tag}-${latest}" \
--F "flood[plan]=@${here}/benchmarks/spec/gatling/2.0.0/benchmark.scala" | /usr/local/bin/jq ".response.uuid" | tr -d '"'`
-poll_and_report
+# tool="Gatling-${latest}"
+# flood_uuid=`/usr/bin/curl --silent --user ${FLOOD_API_TOKEN}: https://api.flood.io/floods \
+# -F "region=ap-southeast-2" \
+# -F "flood[tool]=gatling-${latest}" \
+# -F "flood[threads]=${threads}" \
+# -F "flood[rampup]=${rampup}" \
+# -F "flood[duration]=$((duration-rampup))" \
+# -F "flood[name]=Gatling-${latest}" \
+# -F "flood[tag_list]=${tag}-${latest}" \
+# -F "flood[plan]=@${here}/benchmarks/spec/gatling/2.0.0/benchmark.scala" | /usr/local/bin/jq ".response.uuid" | tr -d '"'`
+# poll_and_report
