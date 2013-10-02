@@ -7,9 +7,9 @@ import bootstrap._
 
 class Benchmark extends Simulation {
 
-  val threads = Integer.getInteger("threads", 1)
+  val threads = Integer.getInteger("threads", 2)
   val rampup = Integer.getInteger("rampup", 10).toLong
-  val duration = Integer.getInteger("duration", 60).toLong
+  val duration = Integer.getInteger("duration", 120).toLong
 
   val uuid = List(System.getProperty("uuid", "test"))
 

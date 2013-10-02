@@ -8,7 +8,7 @@ class Benchmark extends Simulation {
 
   val threads = Integer.getInteger("threads", 2)
   val rampup = Integer.getInteger("rampup", 10).toInt
-  val duration = Integer.getInteger("duration", 60).toInt
+  val duration = Integer.getInteger("duration", 120).toInt
   val uuid = System.getProperty("uuid", "test")
 
   // AHC response.getHeader throws Exception when response could not be built (connection crashed)
