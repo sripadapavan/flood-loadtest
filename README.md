@@ -36,21 +36,15 @@ Tim Koopmans
 
 latest benchmarks
 ==============
-We plan to include nightly releases under development.
-
 You can always get the latest current benchmark results from [flood.io](https://flood.io) at:
 
-* [__JMeter 2.9__ RELEASE](https://flood.io/benchmarks/jmeter)   
-* [__JMeter 2.10__ NIGHTLY](https://flood.io/benchmarks/jmeter?version=-2.10)     
-* [__Gatling 1.5.3__](https://flood.io/benchmarks/gatling)  
-* Gatling 2.0.0-M3a TBA
+* [__JMeter RELEASE__](https://flood.io/benchmarks/jmeter)   
+* [__JMeter LATEST__](https://flood.io/benchmarks/jmeter?version=-2.10)     
+* [__Gatling RELEASE__](https://flood.io/benchmarks/gatling)  
+* [__Gatling LATEST__](https://flood.io/benchmarks/gatling)  
 
 previous benchmarks
 ==============
-* ~~27/9 We observed Gatling was not showing correct throughput due to nginx not setting content-length header~~
-* ~~27/9 We observed that Gatling was not making conditional requests (304s)~~
-* ~~29/9 Gatling did not make conditional requests (304s) so we have hardcoded the header for cacheable content requests.~~
-* 29/9 Gatling throughput measured on flood.io is an approximation only, based on Content-Length headers if they exist. Request rate (per minute) is a more accurate measurement to use when comparing JMeter with Gatling throughput.
 
 | Benchmark                                     | Tool        | Date                         | Duration | Apdex | Mean RT    |
 | -----                                         |-----        |-----                         |-----     |-----      |-----      |
