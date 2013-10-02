@@ -1,4 +1,5 @@
 #!/bin/bash
+source $HOME/.bashrc
 
 here=${PWD}
 
