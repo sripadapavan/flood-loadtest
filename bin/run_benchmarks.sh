@@ -3,7 +3,7 @@ if [ "$#" == "0" ]; then
   echo "Please pass in a flood_api_token"
   exit 1
 fi
-flood_api_token=$1
+export flood_api_token=$1
 
 here=${PWD}
 
