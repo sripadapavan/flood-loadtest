@@ -15,8 +15,8 @@ class Benchmark extends Simulation {
   def contentLength(response: Response) = if (response.hasResponseStatus) Option(response.getHeader("Content-Length")) else None
 
   val httpConf = http
-    // .baseURL("http://172.31.2.77:8000")
-       .baseURL("http://s1.site-staging.flood.io:8000")
+    .baseURL("http://172.31.2.77:8000")
+    .baseURL("http://s1.site-staging.flood.io:8000")
     .acceptHeader("text/javascript, text/html, application/xml, text/xml, */*")
     .acceptEncodingHeader("gzip,deflate,sdch")
     .userAgentHeader("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_4) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.46 Safari/536.5")

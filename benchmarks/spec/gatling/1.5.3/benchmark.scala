@@ -14,8 +14,8 @@ class Benchmark extends Simulation {
   val uuid = List(System.getProperty("uuid", "test"))
 
   val httpConf = httpConfig
-    // .baseURL("http://172.31.2.77:8000")
-    .baseURL("http://s1.site-staging.flood.io:8000")
+    .baseURL("http://172.31.2.77:8000")
+    // .baseURL("http://s1.site-staging.flood.io:8000")
     .acceptHeader("text/javascript, text/html, application/xml, text/xml, */*")
     .acceptEncodingHeader("gzip,deflate,sdch")
     .connection("keep-alive")
@@ -41,7 +41,7 @@ class Benchmark extends Simulation {
     .post("/slow_post?id=${counter}"))
     .pause(15 seconds)
 
-  val scn = scenario("Scenario Name")
+  val scn = scenario("Gatling 1 Benchmark")
     .during(duration, "counter") {
       randomSwitch(
         20 -> get_slow,
