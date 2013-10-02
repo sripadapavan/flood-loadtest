@@ -25,8 +25,6 @@ function poll_and_report {
   echo "${flood_report}" >> ${here}/benchmarks/results/${flood_uuid}.md
   echo >> ${here}/benchmarks/results/${flood_uuid}.md
 
-  # ruby ${here}/bin/draw_gc_graphs.rb ${flood_uuid}
-
   rm -rf ~/VerboseGCAnalyzer-1.3/export/*
   cd ~/VerboseGCAnalyzer-1.3/bin
   ./start.sh /var/log/flood/verbosegc.log
@@ -50,55 +48,57 @@ function poll_and_report {
 
 sudo rm /var/log/flood/verbosegc.log
 
-# threads=1000
-# rampup=60
-# duration=180
-
-# tag=shakeout
-
 threads=10000
 rampup=300
 duration=1200
 
 tag=benchmark
 
-# Benchmark Gatling Current 1.5.3
-tool="Gatling-1.5.3"
-flood_uuid=`/usr/bin/curl --silent --user ${FLOOD_API_TOKEN}: https://api.flood.io/floods \
--F "region=ap-southeast-2" \
--F "flood[tool]=gatling" \
--F "flood[threads]=${threads}" \
--F "flood[rampup]=${rampup}" \
--F "flood[duration]=$((duration-rampup))" \
--F "flood[name]=Gatling 1.5.3" \
--F "flood[tag_list]=${tag}" \
--F "flood[plan]=@${here}/benchmarks/spec/gatling.scala" | /usr/local/bin/jq ".response.uuid" | tr -d '"'`
-poll_and_report
+# # Benchmark Gatling Current 1.5.3
+# tool="Gatling-1.5.3"
+# flood_uuid=`/usr/bin/curl --silent --user ${FLOOD_API_TOKEN}: https://api.flood.io/floods \
+# -F "region=ap-southeast-2" \
+# -F "flood[tool]=gatling" \
+# -F "flood[threads]=${threads}" \
+# -F "flood[rampup]=${rampup}" \
+# -F "flood[duration]=$((duration-rampup))" \
+# -F "flood[name]=Gatling 1.5.3" \
+# -F "flood[tag_list]=${tag}" \
+# -F "flood[plan]=@${here}/benchmarks/spec/gatling/1.5.3/benchmark.scala" | /usr/local/bin/jq ".response.uuid" | tr -d '"'`
+# poll_and_report
 
-# Benchmark JMeter Current 2.9
-tool="JMeter-2.9"
-flood_uuid=`/usr/bin/curl --silent --user ${FLOOD_API_TOKEN}: https://api.flood.io/floods \
--F "region=ap-southeast-2" \
--F "flood[tool]=jmeter" \
--F "flood[threads]=${threads}" \
--F "flood[rampup]=${rampup}" \
--F "flood[duration]=${duration}" \
--F "flood[name]=JMeter 2.9" \
--F "flood[tag_list]=${tag}" \
--F "flood[plan]=@${here}/benchmarks/spec/jmeter.jmx" | /usr/local/bin/jq ".response.uuid" | tr -d '"'`
-poll_and_report
+# # Benchmark JMeter Current 2.9
+# tool="JMeter-2.9"
+# flood_uuid=`/usr/bin/curl --silent --user ${FLOOD_API_TOKEN}: https://api.flood.io/floods \
+# -F "region=ap-southeast-2" \
+# -F "flood[tool]=jmeter" \
+# -F "flood[threads]=${threads}" \
+# -F "flood[rampup]=${rampup}" \
+# -F "flood[duration]=${duration}" \
+# -F "flood[name]=JMeter 2.9" \
+# -F "flood[tag_list]=${tag}" \
+# -F "flood[plan]=@${here}/benchmarks/spec/jmeter/benchmark.jmx" | /usr/local/bin/jq ".response.uuid" | tr -d '"'`
+# poll_and_report
 
-# Benchmark JMeter Nightly
+# Benchmark JMeter Latest
+sudo latest=`/usr/bin/curl --silent http://ci.apache.org/projects/jmeter/nightlies/ | /bin/grep LATEST | /bin/egrep -o "r[0-9]+"`
+sudo /usr/bin/wget -O /usr/share/jmeter-latest/jmeter_bin.zip http://ci.apache.org/projects/jmeter/nightlies/${latest}/apache-jmeter-${latest}_bin.zip
+sudo /usr/bin/wget -O /usr/share/jmeter-latest/jmeter_lib.zip http://ci.apache.org/projects/jmeter/nightlies/${latest}/apache-jmeter-${latest}_lib.zip
+
+sudo /usr/bin/unzip -u -o /usr/share/jmeter-latest/jmeter_bin.zip -d /usr/share/
+sudo /usr/bin/unzip -u -o /usr/share/jmeter-latest/jmeter_lib.zip -d /usr/share/
+sudo chown -R flood:flood /usr/share/apache-jmeter-${latest}
+
 tool="JMeter-2.10"
 flood_uuid=`/usr/bin/curl --silent --user ${FLOOD_API_TOKEN}: https://api.flood.io/floods \
 -F "region=ap-southeast-2" \
--F "flood[tool]=jmeter-2.10" \
+-F "flood[tool]=apache-jmeter-${latest}" \
 -F "flood[threads]=${threads}" \
 -F "flood[rampup]=${rampup}" \
 -F "flood[duration]=${duration}" \
--F "flood[name]=JMeter 2.10" \
--F "flood[tag_list]=${tag}-2.10" \
--F "flood[plan]=@${here}/benchmarks/spec/jmeter.jmx" | /usr/local/bin/jq ".response.uuid" | tr -d '"'`
+-F "flood[name]=apache-jmeter-${latest}" \
+-F "flood[tag_list]=${tag}-latest" \
+-F "flood[plan]=@${here}/benchmarks/spec/jmeter/benchmark.jmx" | /usr/local/bin/jq ".response.uuid" | tr -d '"'`
 poll_and_report
 
 # Benchmark Gatling Nightly
