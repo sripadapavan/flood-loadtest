@@ -43,10 +43,10 @@ function poll_and_report {
   git commit -am "Updating benchmarks from `date`"
   git push
 
-  sudo rm /var/log/flood/verbosegc.log
+  echo | sudo tee /var/log/flood/verbosegc.log
 }
 
-sudo rm /var/log/flood/verbosegc.log
+echo | sudo tee /var/log/flood/verbosegc.log
 
 threads=100
 rampup=10
