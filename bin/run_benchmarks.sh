@@ -1,8 +1,8 @@
 #!/bin/bash
-source $HOME/.bashrc
+FLOOD_API_TOKEN=$1
 
-here="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-echo Script Variables
+here="$( cd "$( dirname "${BASH_SOURCE[0]}" )/../" && pwd )"
+
 echo ${FLOOD_API_TOKEN}
 echo ${here}
 echo --
