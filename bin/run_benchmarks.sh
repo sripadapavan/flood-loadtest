@@ -63,7 +63,7 @@ flood_uuid=`/usr/bin/curl --silent --user ${FLOOD_API_TOKEN}: https://api.flood.
 -F "flood[rampup]=${rampup}" \
 -F "flood[duration]=$((duration-rampup))" \
 -F "flood[name]=Gatling 1.5.3" \
--F "flood[tag_list]=${tag}" \
+-F "flood[tag_list]=${tag}-release" \
 -F "flood[plan]=@${here}/benchmarks/spec/gatling/1.5.3/benchmark.scala" | /usr/local/bin/jq ".response.uuid" | tr -d '"'`
 poll_and_report
 
@@ -77,7 +77,7 @@ flood_uuid=`/usr/bin/curl --silent --user ${FLOOD_API_TOKEN}: https://api.flood.
 -F "flood[rampup]=${rampup}" \
 -F "flood[duration]=${duration}" \
 -F "flood[name]=JMeter 2.9" \
--F "flood[tag_list]=${tag}" \
+-F "flood[tag_list]=${tag}-release" \
 -F "flood[plan]=@${here}/benchmarks/spec/jmeter/benchmark.jmx" | /usr/local/bin/jq ".response.uuid" | tr -d '"'`
 poll_and_report
 
@@ -100,7 +100,7 @@ flood_uuid=`/usr/bin/curl --silent --user ${FLOOD_API_TOKEN}: https://api.flood.
 -F "flood[rampup]=${rampup}" \
 -F "flood[duration]=${duration}" \
 -F "flood[name]=JMeter-${latest}" \
--F "flood[tag_list]=${tag}-latest" \
+-F "flood[tag_list]=${tag}-latest, ${latest}" \
 -F "flood[plan]=@${here}/benchmarks/spec/jmeter/benchmark.jmx" | /usr/local/bin/jq ".response.uuid" | tr -d '"'`
 poll_and_report
 
@@ -121,6 +121,6 @@ flood_uuid=`/usr/bin/curl --silent --user ${FLOOD_API_TOKEN}: https://api.flood.
 -F "flood[rampup]=${rampup}" \
 -F "flood[duration]=$((duration-rampup))" \
 -F "flood[name]=Gatling-${latest}" \
--F "flood[tag_list]=${tag}-${latest}" \
+-F "flood[tag_list]=${tag}-latest, ${latest}" \
 -F "flood[plan]=@${here}/benchmarks/spec/gatling/2.0.0/benchmark.scala" | /usr/local/bin/jq ".response.uuid" | tr -d '"'`
 poll_and_report
