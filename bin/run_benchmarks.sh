@@ -17,7 +17,7 @@ function poll_and_report {
   done
 
   # get verbose GC logs
-  wget -O ${here}/benchmarks/results/gc/${flood_uuid}.log http://s1.node-production.flood.io/log/verbosegc.log
+  # wget -O ${here}/benchmarks/results/gc/${flood_uuid}.log http://s1.node-production.flood.io/log/verbosegc.log
 
   flood_report=`/usr/bin/curl --silent --user ${FLOOD_API_TOKEN}: https://api.flood.io/floods/${flood_uuid}/report | /usr/local/bin/jq ".response.report" | tr -d '"'`
   apdex=`/usr/bin/curl --silent --user ${FLOOD_API_TOKEN}: https://api.flood.io/floods/${flood_uuid} | /usr/local/bin/jq ".response.apdex" | tr -d '"'`
