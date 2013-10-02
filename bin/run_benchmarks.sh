@@ -1,7 +1,11 @@
 #!/bin/bash
-FLOOD_API_TOKEN=$1
-echo ${FLOOD_API_TOKEN} token
-here=${PWD}
+source $HOME/.bashrc
+
+here="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+echo Script Variables
+echo ${FLOOD_API_TOKEN}
+echo ${here}
+echo --
 
 function poll_and_report {
   echo Detailed results at https://flood.io/${flood_uuid}
