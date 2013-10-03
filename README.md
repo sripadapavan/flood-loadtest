@@ -4,26 +4,29 @@
 
 Here at Flood IO we love performance testing. Since we support multiple tools including JMeter and Gatling, we think it's best if we keep track of individual tool performance via different benchmarks. You can see the test plans used for benchmarking for __[Gatling](./benchmarks/spec/gatling.scala)__ and __[JMeter](./benchmarks/spec/jmeter.jmx)__.
 
-We're not in the business of playing one tool off the other, we think different tools meet different requirements of our testers. After all, _"all competitive benchmarking is institutionalized cheating."_ [Guerrilla Manifesto](http://www.perfdynamics.com/Manifesto/gcaprules.html#tth_sEc1.21)
+We're not in the business of playing one tool off the other, we think different tools meet different requirements of our testers. We consider _"all competitive benchmarking is institutionalized cheating."_ [Guerrilla Manifesto](http://www.perfdynamics.com/Manifesto/gcaprules.html#tth_sEc1.21)
 
 As we benchmark the tools in different load scenarios and test configurations we'll document the raw results here for your own analysis. This includes things like GC behvaviour under load, as well as links to summary reports from tests executed on __[flood.io](https://flood.io)__. It's interesting to see how tools behave in high load scenarios. "High" meaning bigger than your own laptop :)
 
-Our basic benchmark consists of throwing __10,000__ users at an __nginx__ site for 30 minutes duration with a [scenario](./benchmarks/spec/scenario.md) that GETs a slow resource (3.5s) 20% of the time, cacheable content (< 10ms) 40% of the time, non-cacheable content (2s) 30% of the time and and the rest simulated POSTs (4s). Each scenario will parse the response (for a string using regular expressions) as well as body and response code assertions. [Apdex](http://apdex.org) is measured on a 4000 ms satisfied target. 
+Our basic benchmark consists of throwing __10,000__ users at an __nginx__ site for 60 minutes duration with a [scenario](./benchmarks/spec/scenario.md) that GETs a slow resource (3.5s) 20% of the time, cacheable content (< 10ms) 40% of the time, non-cacheable content (2s) 30% of the time and and the rest simulated POSTs (4s). Each scenario will parse the response (for a string using regular expressions) as well as body and response code assertions. [Apdex](http://apdex.org) is measured on a 4000 ms satisfied target. 
 
-The target site and flood.io node are separate AWS instances (m1.xlarge) located in the same region (Sydney). The JVM heap size max is 6GB typically run with the following settings:
+The target site and flood.io node are separate AWS instances (m1.xlarge) located in the same region (Sydney). The JVM heap size max is 4GB typically run with the following settings:
 
 ```
-java -server -XX:+HeapDumpOnOutOfMemoryError 
--Xms6144m -Xmx6144m -XX:NewSize=1536m -XX:MaxNewSize=1536m 
--XX:MaxTenuringThreshold=2 -XX:+UseConcMarkSweepGC 
--Dsun.rmi.dgc.client.gcInterval=600000 
--Dsun.rmi.dgc.server.gcInterval=600000 
--XX:PermSize=64m -XX:MaxPermSize=128m 
--verbose:gc 
--XX:+PrintGCDateStamps 
--XX:+PrintGCTimeStamps 
--XX:+PrintGCDetails
--Xloggc:/var/log/flood/verbosegc.log  -XX:-UseGCLogFileRotation
+ -Xms4096m -Xmx4096m -XX:NewSize=1024m -XX:MaxNewSize=1024m 
+ -XX:MaxTenuringThreshold=2 -XX:MaxPermSize=128m -XX:PermSize=64m 
+ -Xmn100M -Xss2M 
+ -XX:+UseThreadPriorities -XX:ThreadPriorityPolicy=42 
+ -XX:+AggressiveOpts -XX:+OptimizeStringConcat -XX:+UseFastAccessorMethods 
+ -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:+CMSParallelRemarkEnabled 
+ -XX:+CMSClassUnloadingEnabled -XX:SurvivorRatio=8 
+ -XX:CMSInitiatingOccupancyFraction=75 -XX:+UseCMSInitiatingOccupancyOnly 
+ -Dsun.rmi.dgc.client.gcInterval=600000 
+ -Dsun.rmi.dgc.server.gcInterval=600000 
+ -XX:+HeapDumpOnOutOfMemoryError 
+ -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintGCTimeStamps 
+ -XX:+PrintGCDetails -Xloggc:/var/log/flood/verbosegc.log 
+ -XX:-UseGCLogFileRotation
 ```
 
 We also include the __[test lab setup](./sites)__ (cloudformation templates) that can be used to replicate testing using your own AWS account. 
@@ -37,6 +40,29 @@ Tim Koopmans
 latest benchmarks
 ==============
 You can always get the latest current benchmark results from [flood.io](https://flood.io) at:
+
+<blockquote class="box">
+                <p>
+                  We maintain daily
+                  <a href="https://flood.io/blog/11-benchmarking-jmeter-and-gatling">
+                    benchmarks
+                  </a>
+                  of current and latest releases for the
+                  <a href="http://jmeter.apache.org/">
+                    Apache JMeter
+                  </a>
+                  and
+                  <a href="http://gatling-tool.org/">
+                    Gatling Tool
+                  </a>
+                  projects.
+                </p>
+                <a class="benchmark" href="https://flood.io/benchmarks/jmeter?tag=benchmark-release" id="jmeter-benchmark-release">JMeter 2.9<span class="apdex">0.95 [4000]</span></a>
+                <a class="benchmark" href="https://flood.io/benchmarks/jmeter?tag=benchmark-latest" id="jmeter-benchmark-latest">JMeter-r1528701<span class="apdex">null</span></a>
+                <a class="benchmark" href="https://flood.io/benchmarks/gatling?tag=benchmark-release" id="gatling-benchmark-release">Gatling 1.5.3<span class="apdex">0.95 [4000]</span></a>
+                <a class="benchmark" href="https://flood.io/benchmarks/gatling?tag=benchmark-latest" id="gatling-benchmark-latest">Gatling-2.0.0-2<span class="apdex">0.95 [4000]</span></a>
+                <script src="/assets/benchmark.js"></script>
+              </blockquote>
 
 ### JMeter
 

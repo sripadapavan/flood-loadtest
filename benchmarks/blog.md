@@ -8,7 +8,7 @@ Which [begs the question](http://en.wikipedia.org/wiki/Begs_the_question), is on
 
 ### Competitive Benchmarks 
 
-Ordinarily, we're not in the business of playing one tool off the other as we think different tools meet different requirements of our testers. Considered that, _"all competitive benchmarking is institutionalized cheating."_ [Guerrilla Manifesto](http://www.perfdynamics.com/Manifesto/gcaprules.html#tth_sEc1.21)
+Ordinarily, we're not in the business of playing one tool off the other as we think different tools meet different requirements of our testers. We consider _"all competitive benchmarking is institutionalized cheating."_ [Guerrilla Manifesto](http://www.perfdynamics.com/Manifesto/gcaprules.html#tth_sEc1.21)
 
 Since we offer both tools on our platform, it was in our interest to offer an objective comparison for both our testers and also the hard working developers who give up their own time making fantastic software like Gatling and JMeter. To that end, we'll continue to make these [benchmarks](https://github.com/flood-io/flood-loadtest) available at the following URLs on a regular basis:
 
@@ -41,18 +41,20 @@ We tuned the OS kernel / TCP network [settings](https://github.com/flood-io/floo
 We run the Java HotSpot JVM with JRE version 1.7.0_13 on Ubuntu 12.04 LTS. Each node allocates a 6GB JVM max. heap size to the test tool running, be it JMeter or Gatling, with the following JVM options:
 
 ```
--XX:+HeapDumpOnOutOfMemoryError 
--Xms6144m -Xmx6144m -XX:NewSize=1536m -XX:MaxNewSize=1536m 
--XX:MaxTenuringThreshold=2 -XX:+UseConcMarkSweepGC 
--Dsun.rmi.dgc.client.gcInterval=600000 
--Dsun.rmi.dgc.server.gcInterval=600000 
--XX:PermSize=64m -XX:MaxPermSize=128m 
--verbose:gc 
--XX:+PrintGCDateStamps 
--XX:+PrintGCTimeStamps 
--XX:+PrintGCDetails
--Xloggc:/var/log/flood/verbosegc.log 
--XX:-UseGCLogFileRotation
+ -Xms4096m -Xmx4096m -XX:NewSize=1024m -XX:MaxNewSize=1024m 
+ -XX:MaxTenuringThreshold=2 -XX:MaxPermSize=128m -XX:PermSize=64m 
+ -Xmn100M -Xss2M 
+ -XX:+UseThreadPriorities -XX:ThreadPriorityPolicy=42 
+ -XX:+AggressiveOpts -XX:+OptimizeStringConcat -XX:+UseFastAccessorMethods 
+ -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:+CMSParallelRemarkEnabled 
+ -XX:+CMSClassUnloadingEnabled -XX:SurvivorRatio=8 
+ -XX:CMSInitiatingOccupancyFraction=75 -XX:+UseCMSInitiatingOccupancyOnly 
+ -Dsun.rmi.dgc.client.gcInterval=600000 
+ -Dsun.rmi.dgc.server.gcInterval=600000 
+ -XX:+HeapDumpOnOutOfMemoryError 
+ -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintGCTimeStamps 
+ -XX:+PrintGCDetails -Xloggc:/var/log/flood/verbosegc.log 
+ -XX:-UseGCLogFileRotation
 ```
 
 The remaining resources are utilized by our test runner and distributed elasticseach engine. We also tune the OS kernel / TCP network settings in a similar fashion to the target site.
