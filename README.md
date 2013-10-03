@@ -41,29 +41,6 @@ latest benchmarks
 ==============
 You can always get the latest current benchmark results from [flood.io](https://flood.io) at:
 
-<blockquote class="box">
-                <p>
-                  We maintain daily
-                  <a href="https://flood.io/blog/11-benchmarking-jmeter-and-gatling">
-                    benchmarks
-                  </a>
-                  of current and latest releases for the
-                  <a href="http://jmeter.apache.org/">
-                    Apache JMeter
-                  </a>
-                  and
-                  <a href="http://gatling-tool.org/">
-                    Gatling Tool
-                  </a>
-                  projects.
-                </p>
-                <a class="benchmark" href="https://flood.io/benchmarks/jmeter?tag=benchmark-release" id="jmeter-benchmark-release">JMeter 2.9<span class="apdex">0.95 [4000]</span></a>
-                <a class="benchmark" href="https://flood.io/benchmarks/jmeter?tag=benchmark-latest" id="jmeter-benchmark-latest">JMeter-r1528701<span class="apdex">null</span></a>
-                <a class="benchmark" href="https://flood.io/benchmarks/gatling?tag=benchmark-release" id="gatling-benchmark-release">Gatling 1.5.3<span class="apdex">0.95 [4000]</span></a>
-                <a class="benchmark" href="https://flood.io/benchmarks/gatling?tag=benchmark-latest" id="gatling-benchmark-latest">Gatling-2.0.0-2<span class="apdex">0.95 [4000]</span></a>
-                <script src="/assets/benchmark.js"></script>
-              </blockquote>
-
 ### JMeter
 
 Current Release [https://flood.io/benchmarks/jmeter](https://flood.io/benchmarks/jmeter?tag=benchmark-release)
