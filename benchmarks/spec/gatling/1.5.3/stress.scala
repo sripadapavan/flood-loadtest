@@ -41,7 +41,7 @@ class Stress extends Simulation {
     .post("/slow_post?id=${counter}"))
     .pause(30 seconds)
 
-  val scn = scenario("Scenario Name")
+  val scn = scenario("Gatling 1 Stress")
     .during(duration, "counter") {
       randomSwitch(
         20 -> get_slow,
