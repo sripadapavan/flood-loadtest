@@ -63,11 +63,11 @@ tag=benchmark
 version="Gatling-1.5.3"
 flood_uuid=`/usr/bin/curl --silent --user ${FLOOD_API_TOKEN}: https://api.flood.io/floods \
 -F "region=ap-southeast-2" \
--F "flood[tool]=gatling" \
+-F "flood[tool]=gatling-${latest}" \
 -F "flood[threads]=${threads}" \
 -F "flood[rampup]=${rampup}" \
 -F "flood[duration]=$((duration-rampup))" \
--F "flood[name]=Gatling 1.5.3" \
+-F "flood[name]=Gatling-1.5.3" \
 -F "flood[tag_list]=${tag}-release" \
 -F "flood[plan]=@${here}/benchmarks/spec/gatling/1.5.3/benchmark.scala" | /usr/local/bin/jq ".response.uuid" | tr -d '"'`
 poll_and_report
@@ -92,6 +92,7 @@ latest=`/usr/bin/curl --silent http://ci.apache.org/projects/jmeter/nightlies/ |
 sudo /usr/bin/wget -O /usr/share/jmeter-latest/jmeter_bin.zip http://ci.apache.org/projects/jmeter/nightlies/${latest}/apache-jmeter-${latest}_bin.zip
 sudo /usr/bin/wget -O /usr/share/jmeter-latest/jmeter_lib.zip http://ci.apache.org/projects/jmeter/nightlies/${latest}/apache-jmeter-${latest}_lib.zip
 
+sudo /bin/rm -rf /usr/share/apache-jmeter*
 sudo /usr/bin/unzip -u -o /usr/share/jmeter-latest/jmeter_bin.zip -d /usr/share/
 sudo /usr/bin/unzip -u -o /usr/share/jmeter-latest/jmeter_lib.zip -d /usr/share/
 sudo /bin/mv -f /usr/share/apache-jmeter* /usr/share/jmeter-${latest}
@@ -114,6 +115,7 @@ poll_and_report
 latest=`/usr/bin/curl --silent http://repository-gatling.forge.cloudbees.com/snapshot/io/gatling/highcharts/gatling-charts-highcharts/2.0.0-SNAPSHOT/ | /bin/egrep -o "gatling-charts.+bundle.zip" | /usr/bin/head -n1 | /usr/bin/cut -d">" -f2 | /bin/egrep -o "2.+bundle"`
 sudo /usr/bin/wget -O /usr/share/gatling-latest/gatling.zip http://repository-gatling.forge.cloudbees.com/snapshot/io/gatling/highcharts/gatling-charts-highcharts/2.0.0-SNAPSHOT/gatling-charts-highcharts-${latest}.zip
 
+sudo /bin/rm -rf /usr/share/gatling-charts-highcharts*
 sudo /usr/bin/unzip -u -o /usr/share/gatling-latest/gatling.zip -d /usr/share/
 sudo /bin/mv -f /usr/share/gatling-charts-highcharts* /usr/share/gatling-${latest}
 sudo /bin/chown -R flood:flood /usr/share/gatling-${latest}

@@ -50,27 +50,28 @@ function poll_and_report {
 
 echo | sudo tee /var/log/flood/verbosegc.log
 
-threads=20000
+threads=30000
 rampup=300
 duration=1200
 
 tag=stress
 
 # Benchmark Gatling Current 1.5.3
-tool="Gatling-1.5.3"
+version="Gatling-1.5.3"
 flood_uuid=`/usr/bin/curl --silent --user ${FLOOD_API_TOKEN}: https://api.flood.io/floods \
 -F "region=ap-southeast-2" \
--F "flood[tool]=gatling" \
+-F "flood[tool]=gatling-${latest}" \
 -F "flood[threads]=${threads}" \
 -F "flood[rampup]=${rampup}" \
 -F "flood[duration]=$((duration-rampup))" \
--F "flood[name]=Gatling 1.5.3" \
--F "flood[tag_list]=${tag}" \
+-F "flood[name]=Gatling-1.5.3" \
+-F "flood[tag_list]=${tag}-release" \
 -F "flood[plan]=@${here}/benchmarks/spec/gatling/1.5.3/stress.scala" | /usr/local/bin/jq ".response.uuid" | tr -d '"'`
 poll_and_report
 
+
 # Benchmark JMeter Current 2.9
-tool="JMeter-2.9"
+version="JMeter-2.9"
 flood_uuid=`/usr/bin/curl --silent --user ${FLOOD_API_TOKEN}: https://api.flood.io/floods \
 -F "region=ap-southeast-2" \
 -F "flood[tool]=jmeter" \
@@ -78,15 +79,17 @@ flood_uuid=`/usr/bin/curl --silent --user ${FLOOD_API_TOKEN}: https://api.flood.
 -F "flood[rampup]=${rampup}" \
 -F "flood[duration]=${duration}" \
 -F "flood[name]=JMeter 2.9" \
--F "flood[tag_list]=${tag}" \
+-F "flood[tag_list]=${tag}-release" \
 -F "flood[plan]=@${here}/benchmarks/spec/jmeter/stress.jmx" | /usr/local/bin/jq ".response.uuid" | tr -d '"'`
 poll_and_report
+
 
 # Benchmark JMeter Latest
 latest=`/usr/bin/curl --silent http://ci.apache.org/projects/jmeter/nightlies/ | /bin/grep LATEST | /bin/egrep -o "r[0-9]+"`
 sudo /usr/bin/wget -O /usr/share/jmeter-latest/jmeter_bin.zip http://ci.apache.org/projects/jmeter/nightlies/${latest}/apache-jmeter-${latest}_bin.zip
 sudo /usr/bin/wget -O /usr/share/jmeter-latest/jmeter_lib.zip http://ci.apache.org/projects/jmeter/nightlies/${latest}/apache-jmeter-${latest}_lib.zip
 
+sudo /bin/rm -rf /usr/share/apache-jmeter*
 sudo /usr/bin/unzip -u -o /usr/share/jmeter-latest/jmeter_bin.zip -d /usr/share/
 sudo /usr/bin/unzip -u -o /usr/share/jmeter-latest/jmeter_lib.zip -d /usr/share/
 sudo /bin/mv -f /usr/share/apache-jmeter* /usr/share/jmeter-${latest}
@@ -104,10 +107,12 @@ flood_uuid=`/usr/bin/curl --silent --user ${FLOOD_API_TOKEN}: https://api.flood.
 -F "flood[plan]=@${here}/benchmarks/spec/jmeter/stress.jmx" | /usr/local/bin/jq ".response.uuid" | tr -d '"'`
 poll_and_report
 
-# Benchmark Gatling Latest
+
+# # Benchmark Gatling Nightly
 latest=`/usr/bin/curl --silent http://repository-gatling.forge.cloudbees.com/snapshot/io/gatling/highcharts/gatling-charts-highcharts/2.0.0-SNAPSHOT/ | /bin/egrep -o "gatling-charts.+bundle.zip" | /usr/bin/head -n1 | /usr/bin/cut -d">" -f2 | /bin/egrep -o "2.+bundle"`
 sudo /usr/bin/wget -O /usr/share/gatling-latest/gatling.zip http://repository-gatling.forge.cloudbees.com/snapshot/io/gatling/highcharts/gatling-charts-highcharts/2.0.0-SNAPSHOT/gatling-charts-highcharts-${latest}.zip
 
+sudo /bin/rm -rf /usr/share/gatling-charts-highcharts*
 sudo /usr/bin/unzip -u -o /usr/share/gatling-latest/gatling.zip -d /usr/share/
 sudo /bin/mv -f /usr/share/gatling-charts-highcharts* /usr/share/gatling-${latest}
 sudo /bin/chown -R flood:flood /usr/share/gatling-${latest}
@@ -123,4 +128,3 @@ flood_uuid=`/usr/bin/curl --silent --user ${FLOOD_API_TOKEN}: https://api.flood.
 -F "flood[tag_list]=${tag}-latest, ${latest}" \
 -F "flood[plan]=@${here}/benchmarks/spec/gatling/2.0.0/stress.scala" | /usr/local/bin/jq ".response.uuid" | tr -d '"'`
 poll_and_report
-
