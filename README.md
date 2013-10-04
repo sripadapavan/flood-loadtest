@@ -86,3 +86,4 @@ previous benchmarks
 | [:chart_with_upwards_trend:](./benchmarks/results/e6aa19ec83d795.md) [:link:](https://flood.io/e6aa19ec83d795) Gatling-2.0.0-20131003.084332-335-bundle | 20 mins<br>2013-10-04 06:42:19 | 30000 | 0.95 [4000] | 1654 |
 | [:chart_with_upwards_trend:](./benchmarks/results/7d83a8fffb0b5f.md) [:link:](https://flood.io/7d83a8fffb0b5f) JMeter-2.9 | 20 mins<br>2013-10-04 10:33:58 | 30000 | 0.94 [4000] | 1790 |
 | [:chart_with_upwards_trend:](./benchmarks/results/85639de7e9d7e3.md) [:link:](https://flood.io/85639de7e9d7e3) Gatling-1.5.3 | 20 mins<br>2013-10-04 10:55:31 | 30000 | 0.95 [4000] | 1710 |
+| [:chart_with_upwards_trend:](./benchmarks/results/281e7285b26e08.md) [:link:](https://flood.io/281e7285b26e08) JMeter-2.9 | 20 mins<br>2013-10-04 11:18:45 | 30000 | 0.18 [4000] | 259847 |
