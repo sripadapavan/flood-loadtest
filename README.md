@@ -80,7 +80,6 @@ previous benchmarks
 | [:chart_with_upwards_trend:](./benchmarks/results/cee9983bd489d1.md) [:link:](https://flood.io/cee9983bd489d1) Gatling-1.5.3 | 60 mins<br>2013-10-03 15:02:36 | 10000 | 0.95 [4000] | 1708 |
 | [:chart_with_upwards_trend:](./benchmarks/results/992552b6145fa4.md) [:link:](https://flood.io/992552b6145fa4) JMeter-2.9 | 60 mins<br>2013-10-03 16:03:20 | 10000 | 0.95 [4000] | 1708 |
 | [:chart_with_upwards_trend:](./benchmarks/results/402cd50f91467b.md) [:link:](https://flood.io/402cd50f91467b) Gatling-2.0.0-20131002.164439-333-bundle | 60 mins<br>2013-10-03 16:55:02 | 10000 | 0.95 [4000] | 1704 |
-| [:chart_with_upwards_trend:](./benchmarks/results/40db98fe5f7f11.md) [:link:](https://flood.io/40db98fe5f7f11) Gatling-1.5.3 | 20 mins<br>2013-10-04 05:15:02 | 30000 | null | null |
 | [:chart_with_upwards_trend:](./benchmarks/results/cb50ec33fe73ac.md) [:link:](https://flood.io/cb50ec33fe73ac) Gatling-1.5.3 | 20 mins<br>2013-10-04 05:41:08 | 30000 | 0.95 [4000] | 1706 |
 | [:chart_with_upwards_trend:](./benchmarks/results/954b7d5d79f134.md) [:link:](https://flood.io/954b7d5d79f134) JMeter-2.9 | 20 mins<br>2013-10-04 06:04:16 | 30000 | 0.24 [4000] | 238395 |
 | [:chart_with_upwards_trend:](./benchmarks/results/962be9007851f2.md) [:link:](https://flood.io/962be9007851f2) JMeter-r1529062 | 20 mins<br>2013-10-04 06:26:32 | 30000 | 0.18 [4000] | 39645 |
