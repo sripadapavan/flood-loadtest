@@ -63,7 +63,7 @@ flood_uuid=`/usr/bin/curl --silent --user ${FLOOD_API_TOKEN}: https://api.flood.
 -F "flood[tool]=jmeter" \
 -F "flood[threads]=700000" \
 -F "flood[rampup]=${duration}" \
--F "flood[name]=JMeter 2.9 --KLUDGE--" \
+-F "flood[name]=JMeter 2.9 KLUDGE" \
 -F "flood[tag_list]=${tag}-release" \
 -F "flood[plan]=@${here}/benchmarks/spec/jmeter/kludge.jmx" | /usr/local/bin/jq ".response.uuid" | tr -d '"'`
 poll_and_report
