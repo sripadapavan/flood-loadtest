@@ -57,7 +57,7 @@ duration=1200
 tag=stress
 
 # Benchmark JMeter Current 2.9 KLUDGE
-version="JMeter-2.9"
+version="JMeter-2.9 Kludge"
 flood_uuid=`/usr/bin/curl --silent --user ${FLOOD_API_TOKEN}: https://api.flood.io/floods \
 -F "region=ap-southeast-2" \
 -F "flood[tool]=jmeter" \
