@@ -100,3 +100,4 @@ previous benchmarks
 | [:chart_with_upwards_trend:](./benchmarks/results/0ea10ce79e0ae4.md) [:link:](https://flood.io/0ea10ce79e0ae4) JMeter-2.9 Kludge | 20 mins<br>2013-10-05 09:00:52 | 30000 | 0.9 [4000] | 2116 |
 | [:chart_with_upwards_trend:](./benchmarks/results/95c0b87dab34e4.md) [:link:](https://flood.io/95c0b87dab34e4) JMeter-2.9 Kludge | 20 mins<br>2013-10-05 09:13:43 | 30000 | 0.32 [4000] | 85491 |
 | [:chart_with_upwards_trend:](./benchmarks/results/348f997ed2dab8.md) [:link:](https://flood.io/348f997ed2dab8) JMeter-2.9 Kludge | 20 mins<br>2013-10-05 10:28:07 | 30000 | 0.87 [4000] | 2206 |
+| [:chart_with_upwards_trend:](./benchmarks/results/52626555a22ecd.md) [:link:](https://flood.io/52626555a22ecd) JMeter-2.9 Kludge | 20 mins<br>2013-10-05 12:14:53 | 30000 | 0.79 [4000] | 3489 |
