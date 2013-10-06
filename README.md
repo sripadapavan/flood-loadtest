@@ -110,3 +110,4 @@ previous benchmarks
 | [:chart_with_upwards_trend:](./benchmarks/results/aeb3bffd64ab4b.md) [:link:](https://flood.io/aeb3bffd64ab4b) JMeter-2.9 Kludge | 20 mins<br>2013-10-05 23:16:31 | 30000 | 0.9 [4000] | 2654 |
 | [:chart_with_upwards_trend:](./benchmarks/results/e48ba7b6ae3f71.md) [:link:](https://flood.io/e48ba7b6ae3f71) JMeter-2.9 Kludge | 20 mins<br>2013-10-05 23:35:56 | 30000 | 0.86 [4000] | 2390 |
 | [:chart_with_upwards_trend:](./benchmarks/results/69ccab50eeccff.md) [:link:](https://flood.io/69ccab50eeccff) Gatling-1.5.3 | 60 mins<br>2013-10-06 15:01:53 | 10000 | 0.95 [4000] | 1709 |
+| [:chart_with_upwards_trend:](./benchmarks/results/618acd6b08afbd.md) [:link:](https://flood.io/618acd6b08afbd) JMeter-2.9 | 60 mins<br>2013-10-06 16:02:34 | 10000 | 0.95 [4000] | 1707 |
