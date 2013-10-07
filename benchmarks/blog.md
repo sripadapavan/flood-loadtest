@@ -38,7 +38,7 @@ We tuned the OS kernel / TCP network [settings](https://github.com/flood-io/floo
 
 [Flood.io](https://flood.io) is a distributed load testing platform that lets you scale out on your own dedicated Grid of flood nodes within minutes. Whilst customers normally launch multiple nodes per Grids in regions across the globe, for the sake of benchmarking we chose to test with just one node, our lowest common denominator. A flood node is equivalent to an [m1.xlarge](http://aws.amazon.com/ec2/instance-types/instance-details/) which sports a 64 bit processor, 4 virtual CPUs and 15 GB RAM.
 
-We run the Java HotSpot JVM with JRE version 1.7.0_13 on Ubuntu 12.04 LTS. Each node allocates a 6GB JVM max. heap size to the test tool running, be it JMeter or Gatling, with the following JVM options:
+We run the Java HotSpot JVM with JRE version 1.7.0_13 on Ubuntu 12.04 LTS. Each node allocates a 4GB JVM max. heap size to the test tool running, be it JMeter or Gatling, with the following JVM options:
 
 ```
  -Xms4096m -Xmx4096m -XX:NewSize=1024m -XX:MaxNewSize=1024m 
