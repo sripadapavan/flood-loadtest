@@ -29,14 +29,9 @@ test do
 
     constant_timer delay: 30000
 
-    visit '/' do
-      assert contains: 'Try it now for free'
-    end
+    visit name: 'home', url: '/'
 
-    visit '/blog/15-new-relic-integration' do
-      assert contains: 'great for development and operations', scope: 'children'
-    end
-
+    visit name: 'blog', url: '/blog/15-new-relic-integration'
   end
 
 end.flood(ENV['FLOOD_API_TOKEN'], {
