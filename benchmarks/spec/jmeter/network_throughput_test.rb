@@ -2,21 +2,16 @@ require 'ruby-jmeter'
 
 test do
 
-  defaults  domain: '172.31.2.77',
-            port: 9000
-
-  with_user_agent :chrome
-
-  threads count: 1000,
+  threads count: 500,
           rampup: 60,
           scheduler: true,
-          duration: 120,
+          duration: 540,
           continue_forever: true,
           delayedStart: true  do
 
-    constant_timer delay: 1000
+    constant_timer delay: 60000
 
-    visit name: 'throughput', url: '/plain_text.html'
+    visit name: '1829kB', url: 'https://s3-ap-southeast-2.amazonaws.com/flood-loadtest/1829kb.html'
   end
 end.flood(ENV['FLOOD_API_TOKEN'], {
   name: 'Throughput Test Single Node',
