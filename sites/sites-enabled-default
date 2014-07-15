@@ -17,6 +17,10 @@ server {
 
   error_page 405 = $uri;
 
+  location /overloaded {
+    return 503;
+  }
+
   location /slow {
     default_type text/plain;
     echo_sleep 3.5;
@@ -34,7 +38,7 @@ server {
     echo_sleep 4;
     echo_duplicate 1024 "slowpost";
   }
-  
+
   location / {
     try_files $uri $uri/ /index.html;
   }

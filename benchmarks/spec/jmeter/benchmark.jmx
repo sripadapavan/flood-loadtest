@@ -16,7 +16,7 @@
           <collectionProp name="Arguments.arguments"/>
         </elementProp>
         <stringProp name="HTTPSampler.domain">172.31.2.77</stringProp>
-        <stringProp name="HTTPSampler.port">8000</stringProp>
+        <stringProp name="HTTPSampler.port">9000</stringProp>
         <stringProp name="HTTPSampler.connect_timeout"/>
         <stringProp name="HTTPSampler.response_timeout"/>
         <stringProp name="HTTPSampler.protocol">http</stringProp>
