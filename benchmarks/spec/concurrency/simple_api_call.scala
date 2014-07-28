@@ -13,11 +13,11 @@ class TestPlan extends Simulation {
     .acceptEncodingHeader("gzip, deflate")
 
   val scn = scenario("benchmark")
-    .during(1800 seconds) {
+    .during(600 seconds) {
       exec(http("api")
         .get("/flood-loadtest/api.json"))
-      .pause(10000 milliseconds)
+      .pause(60000 milliseconds)
     }
 
-  setUp(scn.inject(rampUsers(5000) over (240 seconds))).protocols(httpConf)
+  setUp(scn.inject(rampUsers(10000) over (600 seconds))).protocols(httpConf)
 }

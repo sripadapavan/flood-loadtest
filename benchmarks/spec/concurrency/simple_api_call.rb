@@ -12,19 +12,18 @@ test do
     { name: 'Accept', value: 'text/javascript, text/html, application/xml, text/xml, */*' }
   ]
 
-  threads count: 5000,
-          rampup: 240,
+  threads count: 10000,
+          rampup: 600,
           scheduler: true,
-          duration: 1800,
+          duration: 1200,
           continue_forever: true,
           delayedStart: true  do
 
-    constant_timer delay: 10000
+    constant_timer delay: 60000
 
     get name: 'api', url: '/flood-loadtest/api.json'
   end
-end.jmx
-# end.flood(ENV['FLOOD_API_TOKEN'], {
-#   name: 'High API Concurrency JMeter',
-#   tag_list: 'benchmarks',
-#   privacy_flag: 'public'})
+end.flood(ENV['FLOOD_API_TOKEN'], {
+  name: 'High API Concurrency JMeter',
+  tag_list: 'benchmarks',
+  privacy_flag: 'public'})
