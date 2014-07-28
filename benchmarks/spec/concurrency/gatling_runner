@@ -1,0 +1,22 @@
+#!/bin/bash
+command -v jq >/dev/null 2>&1 || { echo >&2 "Please install http://stedolan.github.io/jq/download/  Aborting."; exit 1; }
+
+if [ "$1" == "-h" ]; then
+  echo "Usage: `basename $0` [Scenario Name] [Grid ID]"
+  exit 0
+fi
+
+here=`pwd`
+scenario=${1-static_site_with_resources}
+grid=${2-fr4fcw11t1tKCavS9SiSUg}
+
+echo Executing ${scenario} on Grid ID: ${grid}
+echo ---
+curl -u ${FLOOD_API_TOKEN}: --silent https://api.flood.io/floods \
+  -F "grid=${grid}" \
+  -F "tool=gatling-2.0.0-SNAPSHOT" \
+  -F "flood[name]=High Concurrency Gatling" \
+  -F "flood[privacy]=public" \
+  -F "flood[tags]=benchmarks" \
+  -F "flood[duration]=1800" \
+  -F "flood_files[]=@${here}/${scenario}.scala" | jq -r ".response.results.link"

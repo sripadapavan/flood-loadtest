@@ -1,0 +1,252 @@
+{
+  "_shards": {
+    "total": 10,
+    "successful": 5,
+    "failed": 0
+  },
+  "indices": {
+    "results-2014.07.28": {
+      "index": {
+        "primary_size_in_bytes": 77090,
+        "size_in_bytes": 77090
+      },
+      "translog": {
+        "operations": 0
+      },
+      "docs": {
+        "num_docs": 22,
+        "max_doc": 22,
+        "deleted_docs": 0
+      },
+      "merges": {
+        "current": 0,
+        "current_docs": 0,
+        "current_size_in_bytes": 0,
+        "total": 0,
+        "total_time_in_millis": 0,
+        "total_docs": 0,
+        "total_size_in_bytes": 0
+      },
+      "refresh": {
+        "total": 16,
+        "total_time_in_millis": 406
+      },
+      "flush": {
+        "total": 5,
+        "total_time_in_millis": 36
+      },
+      "shards": {
+        "0": [
+          {
+            "routing": {
+              "state": "STARTED",
+              "primary": true,
+              "node": "dG-Bz7GDTpO5dpZXCbteNw",
+              "relocating_node": null,
+              "shard": 0,
+              "index": "results-2014.07.28"
+            },
+            "state": "STARTED",
+            "index": {
+              "size_in_bytes": 13868
+            },
+            "translog": {
+              "id": 1406504167331,
+              "operations": 0
+            },
+            "docs": {
+              "num_docs": 4,
+              "max_doc": 4,
+              "deleted_docs": 0
+            },
+            "merges": {
+              "current": 0,
+              "current_docs": 0,
+              "current_size_in_bytes": 0,
+              "total": 0,
+              "total_time_in_millis": 0,
+              "total_docs": 0,
+              "total_size_in_bytes": 0
+            },
+            "refresh": {
+              "total": 3,
+              "total_time_in_millis": 113
+            },
+            "flush": {
+              "total": 1,
+              "total_time_in_millis": 8
+            }
+          }
+        ],
+        "1": [
+          {
+            "routing": {
+              "state": "STARTED",
+              "primary": true,
+              "node": "dG-Bz7GDTpO5dpZXCbteNw",
+              "relocating_node": null,
+              "shard": 1,
+              "index": "results-2014.07.28"
+            },
+            "state": "STARTED",
+            "index": {
+              "size_in_bytes": 21331
+            },
+            "translog": {
+              "id": 1406504167355,
+              "operations": 0
+            },
+            "docs": {
+              "num_docs": 5,
+              "max_doc": 5,
+              "deleted_docs": 0
+            },
+            "merges": {
+              "current": 0,
+              "current_docs": 0,
+              "current_size_in_bytes": 0,
+              "total": 0,
+              "total_time_in_millis": 0,
+              "total_docs": 0,
+              "total_size_in_bytes": 0
+            },
+            "refresh": {
+              "total": 4,
+              "total_time_in_millis": 70
+            },
+            "flush": {
+              "total": 1,
+              "total_time_in_millis": 9
+            }
+          }
+        ],
+        "2": [
+          {
+            "routing": {
+              "state": "STARTED",
+              "primary": true,
+              "node": "dG-Bz7GDTpO5dpZXCbteNw",
+              "relocating_node": null,
+              "shard": 2,
+              "index": "results-2014.07.28"
+            },
+            "state": "STARTED",
+            "index": {
+              "size_in_bytes": 14166
+            },
+            "translog": {
+              "id": 1406504167368,
+              "operations": 0
+            },
+            "docs": {
+              "num_docs": 4,
+              "max_doc": 4,
+              "deleted_docs": 0
+            },
+            "merges": {
+              "current": 0,
+              "current_docs": 0,
+              "current_size_in_bytes": 0,
+              "total": 0,
+              "total_time_in_millis": 0,
+              "total_docs": 0,
+              "total_size_in_bytes": 0
+            },
+            "refresh": {
+              "total": 3,
+              "total_time_in_millis": 56
+            },
+            "flush": {
+              "total": 1,
+              "total_time_in_millis": 7
+            }
+          }
+        ],
+        "3": [
+          {
+            "routing": {
+              "state": "STARTED",
+              "primary": true,
+              "node": "dG-Bz7GDTpO5dpZXCbteNw",
+              "relocating_node": null,
+              "shard": 3,
+              "index": "results-2014.07.28"
+            },
+            "state": "STARTED",
+            "index": {
+              "size_in_bytes": 13817
+            },
+            "translog": {
+              "id": 1406504167342,
+              "operations": 0
+            },
+            "docs": {
+              "num_docs": 5,
+              "max_doc": 5,
+              "deleted_docs": 0
+            },
+            "merges": {
+              "current": 0,
+              "current_docs": 0,
+              "current_size_in_bytes": 0,
+              "total": 0,
+              "total_time_in_millis": 0,
+              "total_docs": 0,
+              "total_size_in_bytes": 0
+            },
+            "refresh": {
+              "total": 3,
+              "total_time_in_millis": 117
+            },
+            "flush": {
+              "total": 1,
+              "total_time_in_millis": 7
+            }
+          }
+        ],
+        "4": [
+          {
+            "routing": {
+              "state": "STARTED",
+              "primary": true,
+              "node": "dG-Bz7GDTpO5dpZXCbteNw",
+              "relocating_node": null,
+              "shard": 4,
+              "index": "results-2014.07.28"
+            },
+            "state": "STARTED",
+            "index": {
+              "size_in_bytes": 13908
+            },
+            "translog": {
+              "id": 1406504167390,
+              "operations": 0
+            },
+            "docs": {
+              "num_docs": 4,
+              "max_doc": 4,
+              "deleted_docs": 0
+            },
+            "merges": {
+              "current": 0,
+              "current_docs": 0,
+              "current_size_in_bytes": 0,
+              "total": 0,
+              "total_time_in_millis": 0,
+              "total_docs": 0,
+              "total_size_in_bytes": 0
+            },
+            "refresh": {
+              "total": 3,
+              "total_time_in_millis": 50
+            },
+            "flush": {
+              "total": 1,
+              "total_time_in_millis": 5
+            }
+          }
+        ]
+      }
+    }
+  }
+}
